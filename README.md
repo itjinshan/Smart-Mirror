@@ -79,6 +79,10 @@ When raising a pull request,
 Branches:
 Use same naming convention as the corresponding issue, f.e. "SJSU-1097"
 
+For Development Issues, start with SJSU-1000 and on;
+For Program Bug Patch Issues, start with SJSU-5000 and on;
+For Project Setup (None Code) Issues, start with SJSU-0000 and on;
+
 Pull Requests/Commit:
 Use issue/story number + short description of work, f.e. "SJSU-1097, Updated Login screen"
 ```
