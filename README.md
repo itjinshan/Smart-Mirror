@@ -86,3 +86,4 @@ For Project Setup (None Code) Issues, start with SJSU-0000 and on;
 Pull Requests/Commit:
 Use issue/story number + short description of work, f.e. "SJSU-1097, Updated Login screen"
 ```
+
