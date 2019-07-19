@@ -1,68 +1,89 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Smart-Mirror
+SJSU CMPE/SE Senior Project 195 ---- Smart Mirror
 
-## Available Scripts
+## Project Abstract
 
-In the project directory, you can run:
+Many individuals participate in the same morning ritual: wake up, get ready for
+work/school and check the news. A 2014 NBC survey found that adult women spend 6.4
+hours/week and adult men spend 4.5 hours/week to spend time and care for their appearance.
+Another survey in 2017 by Tech Times found that 46% admitted to checking their smartphones
+in the morning before getting out of bed.
 
-### `npm start`
+Nowadays, almost everyone owns a smartphone and use them heavily every day getting
+real-time information. Many people find themselves feeling anxious when their smartphones
+aren’t around and can drastically decrease their efficiency on performing other tasks having to
+free up their hands to use their smartphones. Most smartphones won’t allow the user to check
+their appearance with their camera while using certain apps or voice activation and some people
+can’t spend time in front of a mirror getting ready while using their phone at the same time. This
+inefficient multitasking slows people down which defeats the purpose of smart technology.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This project allows people to multitask as they take care of their appearance while also
+staying up to date on current events, news headlines, weather, etc. The voice activated mirror
+provides a hands free experience by displaying what the user asks for, allowing the user to get
+ready in front of the mirror. Thus, this product saves time and increases productivity to care for
+one’s appearance while staying up to date with the latest events.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## Team Members
+- Team Lead: Jinshan (Alex) Jiang
+- Hongbin (Caffrey) Zheng
+- Kevin Lazatin
+- Natalie Tom
 
-### `npm test`
+### Project Management
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### Story-Board Rules
 
-### `npm run build`
+Story-Board link: 
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+#To Do
+The 'To Do' list is populated with issues (aka stories) that are not yet assigned to any developer.
+Those stories are generally created by the Team Lead. If need be, developer can create stories but need to inform Team Lead.
+Developers can assign stories to themselves and start working on them on a local branch.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+#In Progress
+When a story gets (self-)assigned, drag and drop the story into 'In Progress'
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#Needs Review
+As soon as the developer has code ready, a remote branch and a corresponding pull request can be created.
+The newly created pull request is automatically added to the 'Needs Review' column.
+Please make sure to follow naming convention when creating new pull request.
+A new developer must be assigned to the pull request to review the code changes.
 
-### `npm run eject`
+For the reviewer:
+Please check the logic of the code, and make sure it follows good style.
+Test the code changes by running the code locally.
+If updates are needed, write a review and wait for author to make changes.
+When satisfied, merge code into dev-branch.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+#Done
+The code is now merged into the dev-branch.
+Finished stories will be accumulated in the 'Done' column. They will be periodically archived by the Team Lead.
+Issue should still be 'In Progress' and can also be archived.
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### Pull Request Rules
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```
+When raising a pull request,
+- please use following naming convention: "SJSU-1234, Created new Feature" (same naming as issue)
+- add project "Smart-Mirror-Story Board"
+- please create a comment, describing the changes you made
+- please make sure to tag the minimum amount of required reviewers.
+- please inform the reviewers that you tagged them
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+#### Naming Rules
 
-## Learn More
+```
+Branches:
+Use same naming convention as the corresponding issue, f.e. "SJSU-1097"
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+For Development Issues, start with SJSU-1000 and on;
+For Program Bug Patch Issues, start with SJSU-5000 and on;
+For Project Setup (None Code) Issues, start with SJSU-0000 and on;
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Pull Requests/Commit:
+Use issue/story number + short description of work, f.e. "SJSU-1097, Updated Login screen"
+```
 
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
