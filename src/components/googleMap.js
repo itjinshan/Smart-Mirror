@@ -1,41 +1,36 @@
 import React, { Component } from 'react';
-import {Map, Marker, GoogleApiWrapper, TrafficLayer} from 'google-maps-react';
- 
+import { compose, withProps } from "recompose"
+import { withScriptjs, withGoogleMap, GoogleMap, Marker,TrafficLayer } from "react-google-maps"
 
- 
+const MapWithATrafficLayer = compose(
+    withProps({
+      googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyBjtRUvjcEnZpsmS4xtRF1f5HZ1RRV8qWI&v=3.exp&libraries=geometry,drawing,places",
+      loadingElement: <div style={{ height: `100%` }} />,
+      containerElement: <div style={{ height: `400px` }} />,
+      mapElement: <div style={{ height: `100%` }} />,
+    }),
+    withScriptjs,
+    withGoogleMap
+  )(props =>
+    <GoogleMap
+      defaultZoom={14}
+      defaultCenter={{ lat: 37.3352, lng: -121.8811 }}
+    >
+      <TrafficLayer autoUpdate />
+      <Marker position={{ lat: 37.3352, lng: -121.8811 }} />
+    </GoogleMap>
+  );
+
 export class googleMaps extends Component {
     render(){
         return(
             <div id='maps' style={{alignitems:'right', justifyContent:'right'}}>
-            <Map
-                google={this.props.google}
-                zoom={15}
-                initialCenter={{
-                    lat: 37.3352,
-                    lng: -121.8811
-                }}
-                
-                style={{
-                    width: "30%",
-                    height: "50%",
-                }}
-            >
-                <Marker
-                    onClick={this.onMarkerClick}
-                    name={"Current location"}
-                    position={{
-                        lat: 37.3352,
-                        lng: -121.8811
-                    }}
-                />
-            </Map>
+                <MapWithATrafficLayer />
             </div>
         );
     }
 
 }
  
-export default GoogleApiWrapper({
-  apiKey: "AIzaSyBjtRUvjcEnZpsmS4xtRF1f5HZ1RRV8qWI"
-})(googleMaps)
+export default googleMaps;
 
