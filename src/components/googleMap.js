@@ -1,6 +1,18 @@
 import React, { Component } from 'react';
 import { compose, withProps } from "recompose"
-import { withScriptjs, withGoogleMap, GoogleMap, Marker,TrafficLayer } from "react-google-maps"
+import { withScriptjs, 
+         withGoogleMap, 
+         GoogleMap, 
+         Marker,
+         TrafficLayer } from "react-google-maps"
+import { geolocated } from "react-geolocated";
+
+const defaultMapOptions = {
+    fullscreenControl: false,
+    streetViewControl: false,
+    zoomControl: false,
+    mapTypeControl: false,
+};
 
 const MapWithATrafficLayer = compose(
     withProps({
@@ -15,6 +27,7 @@ const MapWithATrafficLayer = compose(
     <GoogleMap
       defaultZoom={14}
       defaultCenter={{ lat: 37.3352, lng: -121.8811 }}
+      defaultOptions={defaultMapOptions}
     >
       <TrafficLayer autoUpdate />
       <Marker position={{ lat: 37.3352, lng: -121.8811 }} />
