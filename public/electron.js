@@ -1,7 +1,5 @@
-const electron = require('electron');
-const app = electron.app;
-const BrowserWindow = electron.BrowserWindow;
-
+const {app, BrowserWindow, ipcMain} = require('electron');
+var macaddress = require('macaddress');
 const path = require('path');
 const isDev = require('electron-is-dev');
 
@@ -12,7 +10,10 @@ function createWindow() {
         width: 900, height: 680, x: 0,
         y: 0,
         darkTheme: true,
-        backgroundColor: "#000000"
+        backgroundColor: "#000000",
+        webPreferences:{
+            nodeIntegration: true
+        }
     });
     mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
     if (isDev) {
@@ -36,3 +37,11 @@ app.on('activate', () => {
         createWindow();
     }
 });
+
+ipcMain.on('mac:get',()=>{
+    macaddress.one(function (err, mac) {
+        console.log("Mac address for this host: %s", mac);  
+        mainWindow.webContents.send('mac:send', mac)
+      });
+})
+
