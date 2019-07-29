@@ -15,14 +15,14 @@ class App extends Component {
          DateConfig: "OFF", 
          DeviceID:""
         }
-        this.socket = SocketIOClient('http://ec2-3-86-246-101.compute-1.amazonaws.com', { transports: ['websocket'] });
+        this.socket = SocketIOClient('ec2-18-212-195-64.compute-1.amazonaws.com', { transports: ['websocket'] });
   }
 
   componentDidMount(){
     ipcRenderer.send('mac:get','get')
     ipcRenderer.on('mac:send',(event,mac)=>{
 
-      axios.get('http://3.86.246.101/api/configDisplay',{params:{DeviceID:mac}}).then(res=>{
+      axios.get('http://ec2-18-212-195-64.compute-1.amazonaws.com/api/configDisplay',{params:{DeviceID:mac}}).then(res=>{
         console.log(res.data)
         this.setState(res.data)
         this.socket.emit('config:receive',{ config: {
