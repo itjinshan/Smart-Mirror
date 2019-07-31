@@ -7,6 +7,9 @@ import { withScriptjs,
          TrafficLayer } from "react-google-maps"
 import { geolocated } from "react-geolocated";
 
+var userLat = 37.3352;
+var userLng = -121.8811;
+
 const defaultMapOptions = {
     fullscreenControl: false,
     streetViewControl: false,
@@ -26,19 +29,30 @@ const MapWithATrafficLayer = compose(
   )(props =>
     <GoogleMap
       defaultZoom={14}
-      defaultCenter={{ lat: 37.3352, lng: -121.8811 }}
+      defaultCenter={{ lat: userLat, lng: userLng }}
       defaultOptions={defaultMapOptions}
     >
       <TrafficLayer autoUpdate />
-      <Marker position={{ lat: 37.3352, lng: -121.8811 }} />
+      <Marker position={{ lat: userLat, lng: userLng }} />
     </GoogleMap>
   );
 
 export class googleMaps extends Component {
+    componentDidMount(props) {
+      navigator.geolocation.getCurrentPosition(this.setPosition)
+    }
+    setPosition(position){
+      userLat=position.coords.latitude;
+      userLng=position.coords.longtitude;
+      console.log(userLat);
+    }
     render(){
         return(
+
           <div className="row" style={{position:'fixed', bottom:15, width:'100%', margin:'auto'}}>
-            <div className="col-9"></div>
+            <div className="col-9">
+              {console.log(userLat)}
+            </div>
             <div id='maps' className='col-3' style={{alignitems:'right', justifyContent:'right'}}>
                 <MapWithATrafficLayer />
             </div>
