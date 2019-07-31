@@ -18,7 +18,7 @@ const MapWithATrafficLayer = compose(
     withProps({
       googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyBjtRUvjcEnZpsmS4xtRF1f5HZ1RRV8qWI&v=3.exp&libraries=geometry,drawing,places",
       loadingElement: <div style={{ height: `100%` }} />,
-      containerElement: <div style={{ height: `400px` }} />,
+      containerElement: <div style={{ height: `250px` }} />,
       mapElement: <div style={{ height: `100%` }} />,
     }),
     withScriptjs,
@@ -37,9 +37,12 @@ const MapWithATrafficLayer = compose(
 export class googleMaps extends Component {
     render(){
         return(
-            <div id='maps' style={{alignitems:'right', justifyContent:'right'}}>
+          <div className="row" style={{position:'fixed', bottom:15, width:'100%', margin:'auto'}}>
+            <div className="col-9"></div>
+            <div id='maps' className='col-3' style={{alignitems:'right', justifyContent:'right'}}>
                 <MapWithATrafficLayer />
             </div>
+          </div>
         );
     }
 

@@ -8,7 +8,7 @@ class App extends Component {
         <div style={{ color:'white'}}>
           Import component here!
         </div>
-        <div style={{height:'40%', width:'30%'}}>
+        <div>
           <GoogleMap />
         </div>
       </div>
