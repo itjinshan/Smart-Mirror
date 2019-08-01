@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import SocketIOClient from 'socket.io-client';
+import GoogleMap from './components/googleMap';
+
 const electron = window.require('electron');
 const fs = electron.remote.require('fs');
 const ipcRenderer  = electron.ipcRenderer;
+
 
 class App extends Component {
   constructor(){
@@ -48,6 +51,14 @@ class App extends Component {
         
         
         
+      <div>
+        <div style={{ color:'white'}}>
+          Import component here!
+        </div>
+        <div>
+          <GoogleMap />
+        </div>
+      </div>
       </div>
     );
   }
