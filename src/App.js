@@ -4,6 +4,7 @@ import SocketIOClient from 'socket.io-client';
 import GoogleMap from './components/googleMap';
 import Time from './components/time';
 import Weather from './components/weather'
+import News from './components/news';
 import './components/css/mirror.css';
 
 const electron = window.require('electron');
@@ -43,15 +44,27 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state.NewsConfig)
     return (
       <div>
-        <div className = "topright"><Weather/></div>
-        <div className = "botright"><Weather/></div>
+        {/* <div className = "topright"><Weather/></div> */}
         <div className = "topleft"><Time/></div>
         <div className = "topcenter"><Time/></div>
-        <div className = "midleft"><Time/></div>
-        <div className = "botleft"><Weather/></div>
-        <div className = "midright"><Weather/></div>
+        {/* <div className = "midleft"><Time/></div> */}
+        {/* <div className = "midright"><Weather/></div>
+        <div className = "botleft"><Weather/></div> */}
+
+{
+          this.state.NewsConfig === "OFF" ? null : 
+          this.state.NewsConfig === "middle-left" ? 
+          <div className="midleft">
+                      <News />
+        </div> : this.state.NewsConfig === "middle-right" ? 
+                 <div className="midright">
+                 <News />
+                   </div> :
+                   <div>Wrong position</div>
+        }
         <div className = "botcenter"></div>
         <div className = "midcenter"></div>
 
