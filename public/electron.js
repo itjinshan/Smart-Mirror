@@ -16,7 +16,9 @@ function createWindow() {
         darkTheme: true,
         backgroundColor: "#000000",
         webPreferences:{
-            nodeIntegration:true
+            nodeIntegration:true,
+            devTools:true,
+            enableBlinkFeatures:"CSSVariables",
         }
     });
     mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);

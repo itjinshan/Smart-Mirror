@@ -21,7 +21,11 @@ export default class News extends Component {
         return (
             <div style={{ backgroundColor:'white', width: 600, height: 300 }}>
                 {this.state.news ?
-                    <Carousel>
+                    <Carousel
+                    controls={false}
+                    indicators={false}
+                    interval={3000}
+                    >
                         {this.state.news.map((item, i) =>
                                 <Carousel.Item key={i}>
                                     <div className="card" >

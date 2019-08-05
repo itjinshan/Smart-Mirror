@@ -5,7 +5,7 @@ import GoogleMap from './components/googleMap';
 import Time from './components/time';
 import Weather from './components/weather'
 import News from './components/news';
-import './components/css/mirror.css';
+import styles from './components/css/styles'
 
 const electron = window.require('electron');
 const ipcRenderer  = electron.ipcRenderer;
@@ -46,35 +46,41 @@ class App extends Component {
   render() {
     console.log(this.state.NewsConfig)
     return (
-      <div>
-        <div className = "topleft" style={{color:'yellow'}}>
-          DeviceID: {this.state.DeviceID}
+      <div style={styles.grid}>
+        <div className = "topleft" style={styles.topLeft}>
+          <div style={{color:'yellow'}}>DeviceID: {this.state.DeviceID}</div>
         </div>
-        {/* <div className = "topright"><Weather/></div> */}
-        <div className = "topleft"><p><Time/></p></div>
-        <div className = "topcenter"><Time/></div>
-        {/* <div className = "midleft"><Time/></div> */}
+         <div className = "topright" style={styles.topRight}><Time/></div> 
+        <div className = "topleft" style={styles.topLeft}><p><Time/></p></div>
+        <div className = "topcenter" style={styles.topCenter}><Time/></div>
+        {/* <div className = "middleleft" style={styles.middleLeft}><Time/></div> 
+        <div className = "middlecenter" style={styles.middleCenter}><p><Time/></p></div>
+        <div className = "middleright" style={styles.middleRight}><Time/></div>
+        <div className = "bottomcenter" style={styles.bottomCenter}><Time/></div> 
+        <div className = "bottomleft" style={styles.bottomLeft}><p><Time/></p></div>
+        <div className = "bottomright" style={styles.bottomRight}><Time/></div>
+        <div className = "midleft"><Time/></div> */}
         {/* <div className = "midright"><Weather/></div>
         <div className = "botleft"><Weather/></div> */}
 
-{
-          this.state.NewsConfig === "OFF" ? null : 
-          this.state.NewsConfig === "middle-left" ? 
-          <div className="midleft">
-                      <News />
-        </div> : this.state.NewsConfig === "middle-right" ? 
-                 <div className="midright">
-                 <News />
-                   </div> :
-                   <div>Wrong position</div>
-        }
-        <div className = "botcenter"></div>
-        <div className = "midcenter"></div>
+        {
+          this.state.NewsConfig === "OFF" ? null :
+            this.state.NewsConfig === "middle-left" ?
+              <div className="midleft" style={styles.middleLeft}>
+                <News />
+              </div> : this.state.NewsConfig === "middle-right" ?
+                <div className="midright" style={styles.middleRight}>
+                  <News />
+                </div> :
+                <div>Wrong position</div>
+        } 
 
-
+        {/* <div className = "botcenter" style={{}}></div>
+        <div className = "midcenter"></div> */}
       </div>
     );
   }
 }
+
 
 export default App;
