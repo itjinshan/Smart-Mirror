@@ -1,0 +1,15 @@
+.maps-middle-row{
+    position: fixed; 
+    width: 100%;
+    margin: auto;
+    bottom: 40%;
+    border: 1px solid yellow;
+};
+
+.maps-bottom-row{
+    position: fixed; 
+    width: 100%;
+    margin: auto;
+    bottom: 5%;
+    border: 1px solid red;
+};

@@ -1,17 +1,11 @@
 import React, { Component } from 'react';
 import GoogleMap from './components/googleMap';
+import './components/googleMap.css';
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <div style={{ color:'white'}}>
-          Import component here!
-        </div>
-        <div>
-          <GoogleMap />
-        </div>
-      </div>
+      <div><GoogleMap /></div>
     );
   }
 }
