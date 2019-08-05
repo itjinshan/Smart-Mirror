@@ -10,14 +10,12 @@ export default class News extends Component {
     }
     componentDidMount() {
         axios.get('http://ec2-18-212-195-64.compute-1.amazonaws.com/api/newsFeed').then(res => {
-            console.log(res)
             var news = res.data.value.articles
             this.setState({ news: news })
         }).catch(err => console.log(err))
     }
 
     render() {
-        console.log(this.state)
         return (
             <div style={{ backgroundColor:'white', width: 600, height: 300 }}>
                 {this.state.news ?

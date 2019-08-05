@@ -11,7 +11,7 @@ const styles = {
       gridRowStart:1,
       gridRowEnd:1,
       justifyContent:"left",
-      textAlign:'center',
+      textAlign:'left',
       border:'1px solid red'
     },
     topCenter:{
@@ -29,7 +29,7 @@ const styles = {
       gridRowStart:1,
       gridRowEnd:1,
       justifyContent:"right",
-      textAlign:'center',
+      textAlign:'right',
       border:'1px solid red'
     },
     middleLeft:{

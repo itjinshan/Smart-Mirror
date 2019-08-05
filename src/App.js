@@ -44,14 +44,13 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.NewsConfig)
     return (
       <div style={styles.grid}>
         <div className = "topleft" style={styles.topLeft}>
-          <div style={{color:'yellow'}}>DeviceID: {this.state.DeviceID}</div>
+          DeviceID: {this.state.DeviceID}
         </div>
          <div className = "topright" style={styles.topRight}><Time/></div> 
-        <div className = "topleft" style={styles.topLeft}><p><Time/></p></div>
+        <div className = "topleft" style={styles.topLeft}><div><Time/></div></div>
         <div className = "topcenter" style={styles.topCenter}><Time/></div>
         {/* <div className = "middleleft" style={styles.middleLeft}><Time/></div> 
         <div className = "middlecenter" style={styles.middleCenter}><p><Time/></p></div>
