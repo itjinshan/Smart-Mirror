@@ -5,7 +5,6 @@ import { withScriptjs,
          GoogleMap, 
          Marker,
          TrafficLayer } from "react-google-maps"
-import { geolocated } from "react-geolocated";
 
 var userLat = 37.3352;
 var userLng = -121.8811;
@@ -38,26 +37,14 @@ const MapWithATrafficLayer = compose(
   );
 
 export class googleMaps extends Component {
-    componentDidMount(props) {
-      navigator.geolocation.getCurrentPosition(this.setPosition)
-    }
-    setPosition(position){
-      userLat=position.coords.latitude;
-      userLng=position.coords.longtitude;
-      console.log(userLat);
-    }
+
     render(){
         return(
-
-          <div className="row" style={{position:'fixed', bottom:15, width:'100%', margin:'auto'}}>
-            <div className="col-9">
-              {console.log(userLat)}
-            </div>
-            <div id='maps' className='col-3' style={{alignitems:'right', justifyContent:'right'}}>
+              <div id='maps'
+                   style={{alignitems:'right', justifyContent:'right'}}>
                 <MapWithATrafficLayer />
-            </div>
-          </div>
-        );
+              </div>
+        )
     }
 
 }
