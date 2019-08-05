@@ -47,8 +47,11 @@ class App extends Component {
     console.log(this.state.NewsConfig)
     return (
       <div>
+        <div className = "topleft" style={{color:'yellow'}}>
+          DeviceID: {this.state.DeviceID}
+        </div>
         {/* <div className = "topright"><Weather/></div> */}
-        <div className = "topleft"><Time/></div>
+        <div className = "topleft"><p><Time/></p></div>
         <div className = "topcenter"><Time/></div>
         {/* <div className = "midleft"><Time/></div> */}
         {/* <div className = "midright"><Weather/></div>
