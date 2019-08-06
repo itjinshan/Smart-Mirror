@@ -46,36 +46,44 @@ class App extends Component {
   render() {
     return (
       <div style={styles.grid}>
-        <div className = "topleft" style={styles.topLeft}>
+        {/* Top grid */}
+      <div className = "topLeft" style={styles.topLeft}>
+      <div className = "row" id='deviceID' style={{color:'yellow'}}>
           DeviceID: {this.state.DeviceID}
         </div>
-         <div className = "topright" style={styles.topRight}><Time/></div> 
-        <div className = "topleft" style={styles.topLeft}><div><Time/></div></div>
-        <div className = "topcenter" style={styles.topCenter}><Time/></div>
-        {/* <div className = "middleleft" style={styles.middleLeft}><Time/></div> 
-        <div className = "middlecenter" style={styles.middleCenter}><p><Time/></p></div>
-        <div className = "middleright" style={styles.middleRight}><Time/></div>
-        <div className = "bottomcenter" style={styles.bottomCenter}><Time/></div> 
-        <div className = "bottomleft" style={styles.bottomLeft}><p><Time/></p></div>
-        <div className = "bottomright" style={styles.bottomRight}><Time/></div>
-        <div className = "midleft"><Time/></div> */}
-        {/* <div className = "midright"><Weather/></div>
-        <div className = "botleft"><Weather/></div> */}
+        {this.state.DateConfig === 'top-left'? <div className='row' id='dateConfig'> <Time/> </div> : null }
+        {this.state.WeatherConfig === 'top-left'? <div className='row' id='weatherConfig'> <Weather/> </div> : null }
+      </div>
 
-        {
-          this.state.NewsConfig === "OFF" ? null :
-            this.state.NewsConfig === "middle-left" ?
-              <div className="midleft" style={styles.middleLeft}>
-                <News />
-              </div> : this.state.NewsConfig === "middle-right" ?
-                <div className="midright" style={styles.middleRight}>
-                  <News />
-                </div> :
-                <div>Wrong position</div>
-        } 
+      <div className = "topCenter" style={styles.topCenter}>
+        {this.state.DateConfig === 'top-middle'? <div className='row' id='dateConfig'> <Time/> </div> : null }
+        {this.state.WeatherConfig === 'top-middle'? <div className='row' id='weatherConfig'> <Weather/> </div> : null }
+      </div>
 
-        {/* <div className = "botcenter" style={{}}></div>
-        <div className = "midcenter"></div> */}
+      <div className = "topRight" style={styles.topRight}>
+        {this.state.DateConfig === 'top-right'? <div className='row' id='dateConfig'> <Time/> </div> : null }
+        {this.state.WeatherConfig === 'top-right'? <div className='row' id='weatherConfig'> <Weather/> </div> : null }
+      </div>
+      {/* End top grid */}
+
+      {/* Middle grid */}
+      <div className="middleLeft" style={styles.middleLeft}>
+      {this.state.NewsConfig === 'middle-left'? <div className='row' id='newsConfig'> <News/> </div> : null }
+      </div>
+      <div className="middleRight" style={styles.middleRight}>
+      {this.state.NewsConfig === 'middle-right'? <div className='row' id='newsConfig'> <News/> </div> : null }
+      </div>
+      {/* End Middle Grid */}
+
+      {/* Bottom grid */}
+      <div className="bottomLeft" style={styles.bottomLeft}>
+      {this.state.MapConfig === 'bottom-left'? <div className='row' id='mapConfig'> <GoogleMap/> </div> : null }
+      </div>
+      <div className="middleRight" style={styles.bottomRight}>
+      {this.state.MapConfig === 'bottom-right'? <div className='row' id='mapConfig'> <GoogleMap/> </div> : null }
+      </div>
+      {/* End Bottom grid */}
+
       </div>
     );
   }
