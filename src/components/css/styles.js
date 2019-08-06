@@ -2,8 +2,10 @@ const styles = {
     grid:{
       display:'grid',
       gridTemplateColumns:"33.33% 33.33% 33.33%",
-      gridTemplateRows:"100% 100% 100%",
-      padding:10
+      gridTemplateRows:"1fr 1fr 1fr",
+      padding:10,
+      backgroundColor:'#000',
+      
     },
     topLeft:{
       gridColumnStart:1,
