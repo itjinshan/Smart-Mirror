@@ -2,17 +2,14 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import SocketIOClient from 'socket.io-client';
 import GoogleMap from './components/googleMap';
-<<<<<<< HEAD
 import Time from './components/time';
 import Weather from './components/weather'
 import News from './components/news';
-import styles from './components/css/styles'
+import './components/googleMap.css';
 
 const electron = window.require('electron');
 const ipcRenderer  = electron.ipcRenderer;
-=======
-import './components/googleMap.css';
->>>>>>> SJSU-1003_1
+
 
 class App extends Component {
 
@@ -22,7 +19,7 @@ class App extends Component {
           WeatherConfig: "OFF",
          MapConfig: "OFF", 
          NewsConfig: "OFF", 
-         DateConfig: "OFF", 
+         DateConfig: "top-middle", 
          DeviceID:""
         }
         this.socket = SocketIOClient('ec2-18-212-195-64.compute-1.amazonaws.com', { transports: ['websocket'] });
@@ -49,42 +46,52 @@ class App extends Component {
 
   render() {
     return (
-<<<<<<< HEAD
-      <div style={styles.grid}>
-        <div className = "topleft" style={styles.topLeft}>
-          DeviceID: {this.state.DeviceID}
+      <div id='wholeScreen' style={{minHeight: window.innerHeight, minWidth: window.innerWidth}}>
+        <div id='Top' className='row' style={{minHeight: window.innerHeight/3, margin:'auto'}}>
+          <div id='left' className = 'col-4'>
+            {console.log(this.state.DateConfig)}
+            {this.state.DateConfig === 'top-left'?(
+              <Time />
+            ): null}
+          </div>
+          <div id='center' className = 'col-4'>
+          {console.log(this.state.DateConfig)}
+            {this.state.DateConfig === 'top-middle'?(
+              <Time />
+            ): null}
+          </div>
+          <div id='right' className = 'col-4'>
+          {console.log(this.state.DateConfig)}
+            {this.state.DateConfig === 'top-right'?(
+              <Time />
+            ): null}
+          </div>
         </div>
-         <div className = "topright" style={styles.topRight}><Time/></div> 
-        <div className = "topleft" style={styles.topLeft}><div><Time/></div></div>
-        <div className = "topcenter" style={styles.topCenter}><Time/></div>
-        {/* <div className = "middleleft" style={styles.middleLeft}><Time/></div> 
-        <div className = "middlecenter" style={styles.middleCenter}><p><Time/></p></div>
-        <div className = "middleright" style={styles.middleRight}><Time/></div>
-        <div className = "bottomcenter" style={styles.bottomCenter}><Time/></div> 
-        <div className = "bottomleft" style={styles.bottomLeft}><p><Time/></p></div>
-        <div className = "bottomright" style={styles.bottomRight}><Time/></div>
-        <div className = "midleft"><Time/></div> */}
-        {/* <div className = "midright"><Weather/></div>
-        <div className = "botleft"><Weather/></div> */}
 
-        {
-          this.state.NewsConfig === "OFF" ? null :
-            this.state.NewsConfig === "middle-left" ?
-              <div className="midleft" style={styles.middleLeft}>
-                <News />
-              </div> : this.state.NewsConfig === "middle-right" ?
-                <div className="midright" style={styles.middleRight}>
-                  <News />
-                </div> :
-                <div>Wrong position</div>
-        } 
+        <div id='Middle' className='row' style={{margin:'auto', minHeight: window.innerHeight/3, border:'1px soilid yellow'}}>
+          <div id='left' className = 'col-4'>
 
-        {/* <div className = "botcenter" style={{}}></div>
-        <div className = "midcenter"></div> */}
+          </div>
+          <div id='center' className = 'col-4'>
+            
+          </div>
+          <div id='right' className = 'col-4'>
+            
+          </div>
+        </div>
+        
+        <div id='Bottom' className='row' style={{margin:'auto', minHeight: window.innerHeight/3, border:'1px soilid green'}}>
+          <div id='left' className = 'col-4'>
+
+          </div>
+          <div id='center' className = 'col-4'>
+            
+          </div>
+          <div id='right' className = 'col-4'>
+            
+          </div>
+        </div>
       </div>
-=======
-      <div><GoogleMap /></div>
->>>>>>> SJSU-1003_1
     );
   }
 }
