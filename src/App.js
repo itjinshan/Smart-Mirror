@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import SocketIOClient from 'socket.io-client';
 import GoogleMap from './components/googleMap';
+<<<<<<< HEAD
 import Time from './components/time';
 import Weather from './components/weather'
 import News from './components/news';
@@ -9,6 +10,9 @@ import styles from './components/css/styles'
 
 const electron = window.require('electron');
 const ipcRenderer  = electron.ipcRenderer;
+=======
+import './components/googleMap.css';
+>>>>>>> SJSU-1003_1
 
 class App extends Component {
 
@@ -45,6 +49,7 @@ class App extends Component {
 
   render() {
     return (
+<<<<<<< HEAD
       <div style={styles.grid}>
         <div className = "topleft" style={styles.topLeft}>
           DeviceID: {this.state.DeviceID}
@@ -77,6 +82,9 @@ class App extends Component {
         {/* <div className = "botcenter" style={{}}></div>
         <div className = "midcenter"></div> */}
       </div>
+=======
+      <div><GoogleMap /></div>
+>>>>>>> SJSU-1003_1
     );
   }
 }
