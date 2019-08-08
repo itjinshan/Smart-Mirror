@@ -5,7 +5,7 @@ import GoogleMap from './components/googleMap';
 import Time from './components/time';
 import Weather from './components/weather'
 import News from './components/news';
-import './components/googleMap.css';
+import './components/css/mirrorStyle.css';
 
 const electron = window.require('electron');
 const ipcRenderer  = electron.ipcRenderer;
@@ -19,8 +19,16 @@ class App extends Component {
           WeatherConfig: "OFF",
          MapConfig: "OFF", 
          NewsConfig: "OFF", 
-         DateConfig: "top-middle", 
-         DeviceID:""
+         DateConfig: "OFF", 
+         DeviceID:"",
+         Tcenter:"top-middle",
+         Tright:"top-right",
+         Tleft:"top-left",
+         Bcenter:"bottom-middle",
+         Bright:"bottom-right",
+         Bleft:"bottom-left",
+         none:"none",
+
         }
         this.socket = SocketIOClient('ec2-18-212-195-64.compute-1.amazonaws.com', { transports: ['websocket'] });
   }
@@ -48,22 +56,28 @@ class App extends Component {
     return (
       <div id='wholeScreen' style={{minHeight: window.innerHeight, minWidth: window.innerWidth}}>
         <div id='Top' className='row' style={{minHeight: window.innerHeight/3, margin:'auto'}}>
-          <div id='left' className = 'col-4'>
-            {console.log(this.state.DateConfig)}
-            {this.state.DateConfig === 'top-left'?(
-              <Time />
+          <div id='left' className = 'col-4 text-left overflow-hidden'>
+            {this.state.Tleft === 'top-left'?(
+              <div>
+                <Time className='row' style={{margin:"3%"}}/>
+                <Weather className='row' />
+              </div>
             ): null}
           </div>
-          <div id='center' className = 'col-4'>
-          {console.log(this.state.DateConfig)}
-            {this.state.DateConfig === 'top-middle'?(
-              <Time />
+          <div id='center' className = 'col-4 text-center' >
+            {this.state.none === 'top-middle'?(
+              <div>
+                <Time className='row' style={{margin:"3%"}}/>
+                <Weather className='row' />
+              </div>
             ): null}
           </div>
-          <div id='right' className = 'col-4'>
-          {console.log(this.state.DateConfig)}
-            {this.state.DateConfig === 'top-right'?(
-              <Time />
+          <div id='right' className = 'col-4 text-right'>
+            {this.state.none === 'top-right'?(
+              <div>
+                <Time className='row' style={{margin:"3%"}}/>
+                <Weather className='row' />
+              </div>
             ): null}
           </div>
         </div>
@@ -81,14 +95,26 @@ class App extends Component {
         </div>
         
         <div id='Bottom' className='row' style={{margin:'auto', minHeight: window.innerHeight/3, border:'1px soilid green'}}>
-          <div id='left' className = 'col-4'>
-
+          <div id='left' className = 'col-4 text-left'>
+          {this.state.none === 'bottom-left'?(
+              <div>
+                <GoogleMap className='row'/>
+              </div>
+            ): null}
           </div>
-          <div id='center' className = 'col-4'>
-            
+          <div id='center' className = 'col-4 text-center'>
+          {this.state.none === 'bottom-middle'?(
+              <div>
+                <GoogleMap className='row'/>
+              </div>
+            ): null}
           </div>
-          <div id='right' className = 'col-4'>
-            
+          <div id='right' className = 'col-4 text-right'>
+          {this.state.Bright === 'bottom-right'?(
+              <div>
+                <GoogleMap className='row'/>
+              </div>
+            ): null}
           </div>
         </div>
       </div>
