@@ -96,9 +96,12 @@ class App extends Component {
         
         <div id='Bottom' className='row' style={{margin:'auto', minHeight: window.innerHeight/3, border:'1px soilid green'}}>
           <div id='left' className = 'col-4 text-left'>
-          {this.state.none === 'bottom-left'?(
-              <div>
-                <GoogleMap className='row'/>
+          {this.state.Bleft === 'bottom-left'?(
+              <div className="row">
+                <div className='col-8'>
+                  <GoogleMap className='row'/>
+                </div>
+                <div className="col-4"></div>
               </div>
             ): null}
           </div>
@@ -110,9 +113,12 @@ class App extends Component {
             ): null}
           </div>
           <div id='right' className = 'col-4 text-right'>
-          {this.state.Bright === 'bottom-right'?(
-              <div>
-                <GoogleMap className='row'/>
+          {this.state.none === 'bottom-right'?(
+              <div className="row">
+                <div className="col-4"></div>
+                <div className="col-8">
+                  <GoogleMap className='row'/>
+                </div>
               </div>
             ): null}
           </div>
