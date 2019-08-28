@@ -1,4 +1,9 @@
 import React, {Component} from "react";
+import CloudyRain from './pics/cloudy-rain.png';
+import Cloudy from './pics/cloudy.png';
+import Raining from './pics/raining.png';
+import Sunny from './pics/sunny.png';
+
 
 class Weather extends Component{
     state = {
@@ -58,12 +63,20 @@ class Weather extends Component{
        const{city, tempC, tempF, desc, icon} = this.state;
        if(city){
            return(
-                <div>
-                    <div style = {{fontSize: 30, color: 'white'}}>{city}
-                    <br/>
-                        <img style = {{width: 100}}src={`https://openweathermap.org/img/w/${icon}.png`} alt="weather icon"/>
-                    <br/>{desc}<br/>{tempC} &deg;C / {tempF} &deg;F</div>
-                </div>
+                    <div style = {{fontSize: 30, color: 'white'}}>
+                        <div className="row">
+                            <div className="col-6">
+                            <img style = {{width: "100%"}}
+                                 src={Sunny}
+                                 alt="weather icon"/>
+                            </div>
+                            <div className="col-6">
+                                <div className="row">{city}</div>
+                                <div className="row">{desc}</div>
+                                <div className="row">{tempC} &deg;C / {tempF} &deg;F</div>
+                            </div>
+                        </div>
+                    </div>
            );
        }
        else{

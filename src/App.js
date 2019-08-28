@@ -21,12 +21,17 @@ class App extends Component {
          NewsConfig: "OFF", 
          DateConfig: "OFF", 
          DeviceID:"",
+
+
          Tcenter:"top-middle",
          Tright:"top-right",
          Tleft:"top-left",
          Bcenter:"bottom-middle",
          Bright:"bottom-right",
          Bleft:"bottom-left",
+         NewsTR:"top-right",
+         NewsTL:"top-left",
+         NewsTC:"top-middle",
          none:"none",
 
         }
@@ -63,6 +68,14 @@ class App extends Component {
                 <Weather className='row' />
               </div>
             ): null}
+            {this.state.none === 'top-left'?(
+              <div className="row">
+                <div className='col-8'>
+                  <News className="row" />
+                </div>
+                <div className='col-4'></div>
+              </div>
+            ): null}
           </div>
           <div id='center' className = 'col-4 text-center' >
             {this.state.none === 'top-middle'?(
@@ -71,12 +84,25 @@ class App extends Component {
                 <Weather className='row' />
               </div>
             ): null}
+            {this.state.none === 'top-middle'?(
+              <div>
+                <News className="row" />
+              </div>
+            ): null}
           </div>
           <div id='right' className = 'col-4 text-right'>
             {this.state.none === 'top-right'?(
               <div>
                 <Time className='row' style={{margin:"3%"}}/>
                 <Weather className='row' />
+              </div>
+            ): null}
+            {this.state.NewsTR === 'top-right'?(
+              <div className="row">
+                <div className='col-4'></div>
+                <div className='col-8'>
+                  <News className="row" />
+                </div>
               </div>
             ): null}
           </div>
@@ -96,7 +122,7 @@ class App extends Component {
         
         <div id='Bottom' className='row' style={{margin:'auto', minHeight: window.innerHeight/3, border:'1px soilid green'}}>
           <div id='left' className = 'col-4 text-left'>
-          {this.state.Bleft === 'bottom-left'?(
+          {this.state.MapConfig === 'bottom-left'?(
               <div className="row">
                 <div className='col-8'>
                   <GoogleMap className='row'/>
@@ -106,14 +132,14 @@ class App extends Component {
             ): null}
           </div>
           <div id='center' className = 'col-4 text-center'>
-          {this.state.none === 'bottom-middle'?(
+          {this.state.MapConfig === 'bottom-middle'?(
               <div>
                 <GoogleMap className='row'/>
               </div>
             ): null}
           </div>
           <div id='right' className = 'col-4 text-right'>
-          {this.state.none === 'bottom-right'?(
+          {this.state.MapConfig === 'bottom-right'?(
               <div className="row">
                 <div className="col-4"></div>
                 <div className="col-8">

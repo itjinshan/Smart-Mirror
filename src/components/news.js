@@ -17,7 +17,7 @@ export default class News extends Component {
 
     render() {
         return (
-            <div style={{ backgroundColor:'white', width: 600, height: 300 }}>
+            <div style={{ backgroundColor:'white', width: '100%', height: '100%' }}>
                 {this.state.news ?
                     <Carousel
                     controls={false}
