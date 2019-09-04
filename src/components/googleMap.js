@@ -19,9 +19,9 @@ const defaultMapOptions = {
 const MapWithATrafficLayer = compose(
     withProps({
       googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyBjtRUvjcEnZpsmS4xtRF1f5HZ1RRV8qWI&v=3.exp&libraries=geometry,drawing,places",
-      loadingElement: <div style={{ height: `100%` }} />,
-      containerElement: <div style={{ height: `250px` }} />,
-      mapElement: <div style={{ height: `100%` }} />,
+      loadingElement: <div style={{ height: '100%' }} />,
+      containerElement: <div style={{ height: '340px' }} />,
+      mapElement: <div style={{ height: '100%' }} />,
     }),
     withScriptjs,
     withGoogleMap
