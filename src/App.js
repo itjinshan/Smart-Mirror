@@ -5,10 +5,12 @@ import GoogleMap from './components/googleMap';
 import Time from './components/time';
 import Weather from './components/weather'
 import News from './components/news';
+import Calendar from './components/googleCalendar';
 import './components/css/mirrorStyle.css';
 
 const electron = window.require('electron');
 const ipcRenderer  = electron.ipcRenderer;
+
 
 
 class App extends Component {
@@ -20,6 +22,7 @@ class App extends Component {
          MapConfig: "OFF", 
          NewsConfig: "OFF", 
          DateConfig: "OFF", 
+         CalendarConfig: "bottom-left",
          DeviceID:"",
 
 
@@ -102,6 +105,7 @@ class App extends Component {
                 <div className='col-4'></div>
                 <div className='col-8'>
                   <News className="row" />
+
                 </div>
               </div>
             ): null}
@@ -122,6 +126,14 @@ class App extends Component {
         
         <div id='Bottom' className='row' style={{margin:'auto', minHeight: window.innerHeight/3, border:'1px soilid green'}}>
           <div id='left' className = 'col-4 text-left'>
+          {this.state.CalendarConfig === 'bottom-left'?(
+              <div className="row">
+                <div className='col-8'>
+                  <Calendar className='row'/>
+                </div>
+                <div className="col-4"></div>
+              </div>
+            ): null}
           {this.state.MapConfig === 'bottom-left'?(
               <div className="row">
                 <div className='col-8'>
