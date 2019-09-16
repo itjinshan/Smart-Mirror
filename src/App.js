@@ -16,7 +16,7 @@ class App extends Component {
   constructor(){
     super()
     this.state = { 
-          WeatherConfig: "OFF",
+         WeatherConfig: "OFF",
          MapConfig: "OFF", 
          NewsConfig: "OFF", 
          DateConfig: "OFF", 
