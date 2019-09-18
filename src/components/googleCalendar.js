@@ -27,7 +27,7 @@ export class googleCalendar extends React.Component {
         <div style={{backgroundColor:'#1C1C1C'/*'#191919'*/}}>
       
       <Calendar
-        style={{ height: '100%',width: '100%', color: '#FFFFFF99', opacity: '.7',fontSize: '63%'}}
+        style={{ height: '100%',width: '100%', color: '#FFFFFF99', fontSize: '63%'}}
         events={this.state.events}
         localizer={localizer}
         toolbar={false}
