@@ -9,6 +9,8 @@ const isDev = require('electron-is-dev');
 
 let mainWindow;
 
+process.env.GOOGLE_API_KEY = 'AIzaSyBjtRUvjcEnZpsmS4xtRF1f5HZ1RRV8qWI';
+
 function createWindow() {
     mainWindow = new BrowserWindow({
         width: 900, height: 680, x: 0,
