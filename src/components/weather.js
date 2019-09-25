@@ -1,9 +1,13 @@
 import React, {Component} from "react";
+
 import CloudyRain from './pics/cloudy-rain.png';
-import Cloudy from './pics/cloudy.png';
+import Cloudy from './pics/few-clouds.png';
 import Raining from './pics/raining.png';
 import Sunny from './pics/sunny.png';
+import Mist from './pics/mist.png';
+import ScatteredClouds from './pics/scattered-clouds.png';
 
+var imgArr = [Sunny, Cloudy, Raining, CloudyRain, ScatteredClouds, Mist];
 
 class Weather extends Component{
     state = {
@@ -15,6 +19,7 @@ class Weather extends Component{
         icon: undefined,
         desc: undefined,
         errorMessage: undefined,
+        iconIndex: undefined,
     }
  
     getLocation = () =>{
@@ -36,6 +41,30 @@ class Weather extends Component{
             desc: data.weather[0].description,
             icon: data.weather[0].icon,
         })
+        if(this.state.icon === "01d" || this.state.icon === "01n"){
+            this.setState({iconIndex: 0});
+        }
+        else if(this.state.icon === "02d" || this.state.icon === "02n"){
+            this.setState({iconIndex: 1});
+        }
+        else if(this.state.icon === "03d" || this.state.icon === "03n"){
+            this.setState({iconIndex: 4});
+        }
+        else if(this.state.icon === "04d" || this.state.icon === "04n"){
+            this.setState({iconIndex: 1});
+        }
+        else if(this.state.icon === "09d" || this.state.icon === "09n"){
+            this.setState({iconIndex: 2});
+        }
+        else if(this.state.icon === "10d" || this.state.icon === "10n"){
+            this.setState({iconIndex: 3});
+        }
+        else if(this.state.icon === "11d" || this.state.icon === "11n"){
+            this.setState({iconIndex: 3});
+        }
+        else if(this.state.icon === "50d" || this.state.icon === "50n"){
+            this.setState({iconIndex: 5});
+        }
     }
 
     componentDidMount(){
@@ -60,15 +89,13 @@ class Weather extends Component{
     }
 
     render(){
-       const{city, tempC, tempF, desc, icon} = this.state;
+       const{city, tempC, tempF, desc} = this.state;
        if(city){
            return(
                     <div style = {{fontSize: 30, color: 'white'}}>
                         <div className="row">
                             <div className="col-6">
-                            <img style = {{width: "100%"}}
-                                 src={Sunny}
-                                 alt="weather icon"/>
+                                <img className="row" alt="Weather Icon" style={{margin:'auto'}} src = {imgArr[this.state.iconIndex]}></img>
                             </div>
                             <div className="col-6">
                                 <div className="row">{city}</div>
