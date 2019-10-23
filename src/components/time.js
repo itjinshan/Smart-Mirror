@@ -13,7 +13,7 @@ class Time extends Component{
 
     render(){
         return(
-            <div style = {{fontSize: 30, fontWeight: 'bold', color: 'white'}}>
+            <div style = {{fontSize: 30, fontWeight: 'bold', color: 'white', margin:'auto'}}>
                 {this.state.date.toLocaleTimeString()}<br/>
                 {this.state.date.toLocaleDateString()}
                 {this.count()}
