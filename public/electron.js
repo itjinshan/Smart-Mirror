@@ -1,4 +1,5 @@
 const electron = require('electron');
+const { session } = require('electron')
 var macaddress = require('macaddress');
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
@@ -8,6 +9,7 @@ const path = require('path');
 const isDev = require('electron-is-dev');
 
 let mainWindow;
+process.env.GOOGLE_API_KEY = 'AIzaSyBjtRUvjcEnZpsmS4xtRF1f5HZ1RRV8qWI'
 
 function createWindow() {
     mainWindow = new BrowserWindow({
@@ -21,12 +23,26 @@ function createWindow() {
             enableBlinkFeatures:"CSSVariables",
         }
     });
+
+
+
     mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
+
+    
+    mainWindow.webContents.session.setPermissionRequestHandler((webContents, permission, callback)=>{
+        if(permission === 'geolocation'){
+            return callback(true); 
+        }
+        callback(true);
+    })
+
     if (isDev) {
         // Open the DevTools.
         //BrowserWindow.addDevToolsExtension('<location to your react chrome extension>');
         mainWindow.webContents.openDevTools();
     }
+
+
     mainWindow.on('closed', () => mainWindow = null);
 }
 
