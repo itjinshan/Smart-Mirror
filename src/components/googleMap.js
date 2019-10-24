@@ -6,8 +6,8 @@ import { withScriptjs,
          Marker,
          TrafficLayer } from "react-google-maps"
 
-var userLat = 37.3352;
-var userLng = -121.8811;
+var userLat;// = 37.3352;
+var userLng;// = -121.8811;
 
 const defaultMapOptions = {
     fullscreenControl: false,
@@ -37,7 +37,18 @@ const MapWithATrafficLayer = compose(
   );
 
 export class googleMaps extends Component {
-
+  getLocation = () =>{
+    return new Promise(function (resolve, reject){
+        navigator.geolocation.getCurrentPosition(resolve, reject);
+    });
+  }
+  componentDidMount(){
+    this.getLocation()
+    .then((position)=>{
+      userLat = position.coords.latitude
+      userLng = position.coords.longitude
+    })
+  }
     render(){
         return(
               <div id='maps'
