@@ -22,19 +22,32 @@ export default class News extends Component {
                     <Carousel
                     controls={false}
                     indicators={false}
-                    interval={3000}
+                    // interval={3000}
+                    duration={3000}
                     wrap = {true}
                     pauseOnHover= {false}
                     >
                         {this.state.news.map((item, i) =>
                                 <Carousel.Item key={i}>
-                                    <div className="card" style = {{borderColor: '#353c51'}}>
-                                        <div className="card-header" style = {{backgroundColor:'#353c51'}}>
-                                            <text style = {{fontWeight: 'bold', color: 'white'}}>NEWS</text>
+                                    <div className="card" 
+                                         style = {{borderColor: '#353c51'}}
+                                    >
+                                        <div className="card-header" 
+                                             style = {{backgroundColor:'#353c51'}}
+                                        >
+                                            <text style = {{fontWeight: 'bold', 
+                                                            color: 'white'}}>NEWS</text>
                                         </div>
-                                        <div className="card-body" style = {{backgroundColor: '#353c51'}}>
-                                            <h5 className="card-title" style = {{color: 'white', fontWeight: 'bold', textDecorationLine: 'underline'}}>{item.title}</h5>
-                                            <p className="card-text" style = {{color: 'white'}}>{item.description}</p>
+                                        <div className="card-body" 
+                                             style = {{backgroundColor: '#353c51'}}>
+                                            <h5 className="card-title" 
+                                                style = {{color: 'white', 
+                                                          fontWeight: 'bold', 
+                                                          textDecorationLine: 'underline'}}>{item.title}
+                                            </h5>
+                                            <p className="card-text" 
+                                               style = {{color: 'white'}}>{item.description}
+                                            </p>
                                         </div>
                                     </div>
                                 </Carousel.Item>
