@@ -69,9 +69,7 @@ class App extends Component {
         <div id='Top' className='row' style={{minHeight: window.innerHeight/3-8, margin:'auto'}}>
           <div id='left' className = 'col-4 text-left overflow-hidden'>
             {this.state.Tleft === 'top-left'?(
-              <div>
                 <Weather className='row' />
-              </div>
             ): null}
             {this.state.none === 'top-left'?(
               <div className="row">
