@@ -6,8 +6,8 @@ import { withScriptjs,
          Marker,
          TrafficLayer } from "react-google-maps"
 
-var userLat;// = 37.3352;
-var userLng;// = -121.8811;
+var userLat = 37.3352;
+var userLng = -121.8811;
 
 const defaultMapOptions = {
     fullscreenControl: false,

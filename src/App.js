@@ -63,11 +63,13 @@ class App extends Component {
   render() {
     return (
       <div id='wholeScreen' style={{minHeight: window.innerHeight, minWidth: window.innerWidth}}>
-        <div id='Top' className='row' style={{minHeight: window.innerHeight/3, margin:'auto'}}>
+        <div id='Time_N_Date' style={{minHeight: 8, margin:'auto'}}>
+          <Time />
+        </div>
+        <div id='Top' className='row' style={{minHeight: window.innerHeight/3-8, margin:'auto'}}>
           <div id='left' className = 'col-4 text-left overflow-hidden'>
             {this.state.Tleft === 'top-left'?(
               <div>
-                <Time className='row' style={{margin:"3%"}}/>
                 <Weather className='row' />
               </div>
             ): null}
@@ -83,7 +85,6 @@ class App extends Component {
           <div id='center' className = 'col-4 text-center' >
             {this.state.none === 'top-middle'?(
               <div>
-                <Time className='row' style={{margin:"3%"}}/>
                 <Weather className='row' />
               </div>
             ): null}
@@ -96,7 +97,6 @@ class App extends Component {
           <div id='right' className = 'col-4 text-right'>
             {this.state.none === 'top-right'?(
               <div>
-                <Time className='row' style={{margin:"3%"}}/>
                 <Weather className='row' />
               </div>
             ): null}
