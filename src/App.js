@@ -62,11 +62,11 @@ class App extends Component {
 
   render() {
     return (
-      <div id='wholeScreen' style={{minHeight: window.innerHeight, minWidth: window.innerWidth}}>
-        <div id='Time_N_Date' style={{minHeight: 8, margin:'auto'}}>
-          <Time />
-        </div>
-        <div id='Top' className='row' style={{minHeight: window.innerHeight/3-8, margin:'auto'}}>
+      <div id='wholeScreen' style={{maxHeight: window.innerHeight, maxWidth: window.innerWidth}}>
+      <div id='Time_N_Date' style={{minHeight: 8, margin:'auto'}}>
+        <Time />
+      </div>
+        <div id='Top' className='row' style={{minHeight: window.innerHeight/3-10, margin:'auto'}}>
           <div id='left' className = 'col-4 text-left overflow-hidden'>
             {this.state.Tleft === 'top-left'?(
                 <Weather className='row' />
