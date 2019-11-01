@@ -17,30 +17,33 @@ export default class News extends Component {
     }
 
     render() {
-        return (
-            <div style={{ backgroundColor:'white', width: '100%', height: '100%' }}>
-                {this.state.news ?
-                    <Carousel
-                    controls={false}
-                    indicators={false}
-                    interval={5000}
-                    wrap = {true}
-                    pauseOnHover= {false}
-                    >
-                        {this.state.news.map((item, i) =>
-                                <Carousel.Item key={i}>
-                                    <div style = {{textAlign: 'left'}}>
-                                            <img style = {{width: 50, height: 50}}src = {Newsicon}></img>
-                                            <text style = {{fontWeight: 'bold', color: 'white'}}> NEWS</text>
-                                            <div style = {{color: 'white', fontSize: 20, fontWeight: 'bold', textDecorationLine: 'underline'}}>{item.title}</div>
-                                            <div style = {{color: 'white'}}>{item.description}</div>
-                                    </div>
-                                </Carousel.Item>
-                        )}
-                    </Carousel> :
-                    null}
-
-            </div>
-        )
+        return (
+                        <div style={{ backgroundColor:'black', width: '100%', height: '100%'}}>
+                            {this.state.news ?
+                                <Carousel
+                                controls={false}
+                                indicators={false}
+                                interval={5000}
+                                wrap = {true}
+                                pauseOnHover= {false}
+                                >
+                                    {this.state.news.map((item, i) =>
+                                            <Carousel.Item key={i}>
+                                                <div style = {{textAlign: 'left'}}>                                                       
+                                                        <div style = {{fontWeight: 'bold', color: 'white', fontSize: 20}}>
+                                                            <img style = {{width: 50, height: 50}}src = {Newsicon}></img>
+                                                            NEWS
+                                                        </div>
+                                                        <div style = {{color: 'white', fontSize: 20, fontWeight: 'bold', textDecorationLine: 'underline'}}>{item.title}</div>
+                                                        <div style = {{color: 'white'}}>{item.description}</div>
+                                                </div>
+                                            </Carousel.Item>
+                                    )}
+                                </Carousel> :
+                                null}
+            
+                        </div>
+                    )
+            
     }
 }
