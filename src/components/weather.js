@@ -80,7 +80,7 @@ class Weather extends Component{
         this.timerID = setInterval(
             ()=>
             this.getWeather(this.state.lat, this.state.lon),
-            60000
+            1800000
         );
     }
 
