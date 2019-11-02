@@ -18,12 +18,25 @@ export default class News extends Component {
 
     render() {
         return (
-            <div className = "card" style={{ backgroundColor:'black', width: '100%', height: '100%' }}>
+            <div className = "card" 
+                 style={{ backgroundColor:'black', 
+                          width: '100%', height: '100%' }}>
                 {this.state.news ?
+                    <div className="card-header" 
+                        style = {{backgroundColor:'black'}}
+                    >
+                        {console.log(this.state.news)}
+                    <div className="text-right" 
+                          style = {{fontWeight: 'bold', 
+                                    color: 'white', 
+                                    fontSize: 21, 
+                                    borderBottom:'1px solid white'}}>
+                        BBC NEWS
+                    </div>
                     <Carousel
                     controls={false}
                     indicators={false}
-                    // interval={3000}
+                    interval={12000}
                     duration={5000}
                     wrap = {true}
                     pauseOnHover= {false}
@@ -31,31 +44,26 @@ export default class News extends Component {
                         {this.state.news.map((item, i) =>
                                 <Carousel.Item key={i}>
                                     <div 
-                                         style = {{ textAlign: 'left', borderColor: '#353c51'}}
+                                         style = {{borderColor: '#353c51'}}
                                     >
-                                        <div className="card-header" 
-                                             style = {{backgroundColor:'black'}}
-                                        >
-                                            <text style = {{fontWeight: 'bold', color: 'white', fontSize: 25}}>
-                                                <img style = {{width: 50, height: 50}}src = {Newsicon}></img>
-                                                NEWS
-                                            </text>
+
                                         {/* </div>
                                         <div className="card-body" 
                                              style = {{backgroundColor: '#353c51'}}> */}
-                                            <h5 className="card-title" 
+                                            <h5 className="card-title mt-3 text-left" 
                                                 style = {{color: 'white', 
-                                                          fontWeight: 'bold', 
-                                                          textDecorationLine: 'underline'}}>{item.title}
+                                                          fontWeight: 'bold',
+                                                          fontSize: 25, top: 10}}>{item.title}
                                             </h5>
-                                            <p className="card-text" 
+                                            <p className="card-text text-left" 
                                                style = {{color: 'white'}}>{item.description}
                                             </p>
                                         </div>
-                                    </div>
+                                    
                                 </Carousel.Item>
                         )}
-                    </Carousel> :
+                    </Carousel>
+                    </div> :
                     null}
 
             </div>
