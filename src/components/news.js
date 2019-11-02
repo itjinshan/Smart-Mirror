@@ -20,7 +20,7 @@ export default class News extends Component {
         return (
             <div className = "card" 
                  style={{ backgroundColor:'black', 
-                          width: '100%', height: '100%' }}>
+                          width: '100%', height: '100%', right:0 }}>
                 {this.state.news ?
                     <div className="card-header" 
                         style = {{backgroundColor:'black'}}
