@@ -24,7 +24,7 @@ class Time extends Component{
     render(){
         return(
             <div className='row' style = {{
-                    fontSize: 25, 
+                    fontSize: 29, 
                     fontWeight: 'bold', 
                     color: 'white', 
                     margin:'auto'}}>

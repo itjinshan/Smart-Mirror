@@ -63,10 +63,10 @@ class App extends Component {
   render() {
     return (
       <div id='wholeScreen' style={{maxHeight: window.innerHeight, maxWidth: window.innerWidth}}>
-      <div id='Time_N_Date' style={{minHeight: 8, margin:'auto'}}>
+      <div id='Time_N_Date' style={{maxHeight: 39, margin:'auto'}}>
         <Time />
       </div>
-        <div id='Top' className='row' style={{minHeight: window.innerHeight/3-10, margin:'auto'}}>
+        <div id='Top' className='row' style={{minHeight: window.innerHeight/3-13, margin:'auto'}}>
           <div id='left' className = 'col-4 text-left overflow-hidden'>
             {this.state.Tleft === 'top-left'?(
                 <Weather className='row' />
@@ -110,9 +110,9 @@ class App extends Component {
           </div>
         </div>
 
-        <div id='Middle' className='row' style={{margin:'auto', minHeight: window.innerHeight/3, border:'1px soilid yellow'}}>
+        <div id='Middle' className='row' style={{margin:'auto', minHeight: window.innerHeight/3-13, border:'1px soilid yellow'}}>
           <div id='left' className = 'col-4'>
-
+          
           </div>
           <div id='center' className = 'col-4'>
             
@@ -122,7 +122,7 @@ class App extends Component {
           </div>
         </div>
         
-        <div id='Bottom' className='row' style={{margin:'auto', minHeight: window.innerHeight/3, border:'1px soilid green'}}>
+        <div id='Bottom' className='row' style={{margin:'auto', minHeight: window.innerHeight/3-13, border:'1px soilid green'}}>
           <div id='left' className = 'col-4 text-left'>
           {this.state.CalendarConfig === 'bottom-left'?(
               <div className="row">
