@@ -24,7 +24,7 @@ class App extends Component {
          DateConfig: "OFF", 
          CalendarConfig: "bottom-left",
          DeviceID:"",
-
+         user:"",
 
          Tcenter:"top-middle",
          Tright:"top-right",
@@ -36,7 +36,6 @@ class App extends Component {
          NewsTL:"top-left",
          NewsTC:"top-middle",
          none:"none",
-
         }
         this.socket = SocketIOClient('ec2-18-212-195-64.compute-1.amazonaws.com', { transports: ['websocket'] });
   }
@@ -57,6 +56,7 @@ class App extends Component {
       this.socket.on('config:send',(data)=>{
         console.log(data)
         this.setState(data.config)
+        console.log(this.state)
       })
   }
 
