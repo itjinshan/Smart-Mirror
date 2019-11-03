@@ -6,6 +6,7 @@ import Time from './components/time';
 import Weather from './components/weather'
 import News from './components/news';
 import Calendar from './components/googleCalendar';
+import Gmail from './components/gmail';
 import './components/css/mirrorStyle.css';
 
 const electron = window.require('electron');
@@ -24,7 +25,7 @@ class App extends Component {
          DateConfig: "OFF", 
          CalendarConfig: "bottom-left",
          DeviceID:"",
-         user:"",
+         user:null,
 
          Tcenter:"top-middle",
          Tright:"top-right",
@@ -103,7 +104,6 @@ class App extends Component {
                 <div className='col-4'></div>
                 <div className='col-8'>
                   <News className="row" />
-
                 </div>
               </div>
             ): null}
@@ -115,7 +115,7 @@ class App extends Component {
           
           </div>
           <div id='center' className = 'col-4'>
-            
+            <Gmail user={this.state.user} />
           </div>
           <div id='right' className = 'col-4'>
             

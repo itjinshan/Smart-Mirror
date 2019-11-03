@@ -25,7 +25,6 @@ export default class News extends Component {
                     <div className="card-header" 
                         style = {{backgroundColor:'black'}}
                     >
-                        {console.log(this.state.news)}
                     <div className="text-right" 
                           style = {{fontWeight: 'bold', 
                                     color: 'white', 
