@@ -69,10 +69,10 @@ class App extends Component {
       </div>
         <div id='Top' className='row' style={{minHeight: window.innerHeight/3-13, margin:'auto'}}>
           <div id='left' className = 'col-4 text-left overflow-hidden'>
-            {this.state.Tleft === 'top-left'?(
+            {this.state.WeatherConfig === 'top-left'?(
                 <Weather className='row' />
             ): null}
-            {this.state.none === 'top-left'?(
+            {this.state.NewsConfig === 'top-left'?(
               <div className="row">
                 <div className='col-8'>
                   <News className="row" />
@@ -82,24 +82,24 @@ class App extends Component {
             ): null}
           </div>
           <div id='center' className = 'col-4 text-center' >
-            {this.state.none === 'top-middle'?(
+            {this.state.WeatherConfig === 'top-middle'?(
               <div>
                 <Weather className='row' />
               </div>
             ): null}
-            {this.state.none === 'top-middle'?(
+            {this.state.NewsConfig === 'top-middle'?(
               <div>
                 <News className="row" />
               </div>
             ): null}
           </div>
           <div id='right' className = 'col-4 text-right'>
-            {this.state.none === 'top-right'?(
+            {this.state.WeatherConfig === 'top-right'?(
               <div>
                 <Weather className='row' />
               </div>
             ): null}
-            {this.state.NewsTR === 'top-right'?(
+            {this.state.NewsConfig === 'top-right'?(
               <div className="row">
                 <div className='col-4'></div>
                 <div className='col-8'>
