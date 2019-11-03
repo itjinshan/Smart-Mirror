@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import Carousel from 'react-bootstrap/Carousel'
+import Newsicon from  './pics/newsicon.png';
 
 export default class News extends Component {
     constructor() {
@@ -17,29 +18,52 @@ export default class News extends Component {
 
     render() {
         return (
-            <div style={{ backgroundColor:'white', width: '100%', height: '100%' }}>
+            <div className = "card" 
+                 style={{ backgroundColor:'black', 
+                          width: '100%', height: '100%', right:0 }}>
                 {this.state.news ?
+                    <div className="card-header" 
+                        style = {{backgroundColor:'black'}}
+                    >
+                        {console.log(this.state.news)}
+                    <div className="text-right" 
+                          style = {{fontWeight: 'bold', 
+                                    color: 'white', 
+                                    fontSize: 21, 
+                                    borderBottom:'1px solid white'}}>
+                        BBC NEWS
+                    </div>
                     <Carousel
                     controls={false}
                     indicators={false}
-                    interval={3000}
+                    interval={12000}
+                    duration={5000}
                     wrap = {true}
                     pauseOnHover= {false}
                     >
                         {this.state.news.map((item, i) =>
                                 <Carousel.Item key={i}>
-                                    <div className="card" style = {{borderColor: '#353c51'}}>
-                                        <div className="card-header" style = {{backgroundColor:'#353c51'}}>
-                                            <text style = {{fontWeight: 'bold', color: 'white'}}>NEWS</text>
+                                    <div 
+                                         style = {{borderColor: '#353c51'}}
+                                    >
+
+                                        {/* </div>
+                                        <div className="card-body" 
+                                             style = {{backgroundColor: '#353c51'}}> */}
+                                            <h5 className="card-title mt-3 text-left" 
+                                                style = {{color: 'white', 
+                                                          fontWeight: 'bold',
+                                                          fontSize: 25, top: 10}}>{item.title}
+                                            </h5>
+                                            <p className="card-text text-left" 
+                                               style = {{color: 'white'}}>{item.description}
+                                            </p>
                                         </div>
-                                        <div className="card-body" style = {{backgroundColor: '#353c51'}}>
-                                            <h5 className="card-title" style = {{color: 'white', fontWeight: 'bold', textDecorationLine: 'underline'}}>{item.title}</h5>
-                                            <p className="card-text" style = {{color: 'white'}}>{item.description}</p>
-                                        </div>
-                                    </div>
+                                    
                                 </Carousel.Item>
                         )}
-                    </Carousel> :
+                    </Carousel>
+                    </div> :
                     null}
 
             </div>

@@ -62,14 +62,14 @@ class App extends Component {
 
   render() {
     return (
-      <div id='wholeScreen' style={{minHeight: window.innerHeight, minWidth: window.innerWidth}}>
-        <div id='Top' className='row' style={{minHeight: window.innerHeight/3, margin:'auto'}}>
+      <div id='wholeScreen' style={{maxHeight: window.innerHeight, maxWidth: window.innerWidth}}>
+      <div id='Time_N_Date' style={{maxHeight: 39, margin:'auto'}}>
+        <Time />
+      </div>
+        <div id='Top' className='row' style={{minHeight: window.innerHeight/3-13, margin:'auto'}}>
           <div id='left' className = 'col-4 text-left overflow-hidden'>
             {this.state.Tleft === 'top-left'?(
-              <div>
-                <Time className='row' style={{margin:"3%"}}/>
                 <Weather className='row' />
-              </div>
             ): null}
             {this.state.none === 'top-left'?(
               <div className="row">
@@ -83,7 +83,6 @@ class App extends Component {
           <div id='center' className = 'col-4 text-center' >
             {this.state.none === 'top-middle'?(
               <div>
-                <Time className='row' style={{margin:"3%"}}/>
                 <Weather className='row' />
               </div>
             ): null}
@@ -96,7 +95,6 @@ class App extends Component {
           <div id='right' className = 'col-4 text-right'>
             {this.state.none === 'top-right'?(
               <div>
-                <Time className='row' style={{margin:"3%"}}/>
                 <Weather className='row' />
               </div>
             ): null}
@@ -112,9 +110,9 @@ class App extends Component {
           </div>
         </div>
 
-        <div id='Middle' className='row' style={{margin:'auto', minHeight: window.innerHeight/3, border:'1px soilid yellow'}}>
+        <div id='Middle' className='row' style={{margin:'auto', minHeight: window.innerHeight/3-13, border:'1px soilid yellow'}}>
           <div id='left' className = 'col-4'>
-
+          
           </div>
           <div id='center' className = 'col-4'>
             
@@ -124,7 +122,7 @@ class App extends Component {
           </div>
         </div>
         
-        <div id='Bottom' className='row' style={{margin:'auto', minHeight: window.innerHeight/3, border:'1px soilid green'}}>
+        <div id='Bottom' className='row' style={{margin:'auto', minHeight: window.innerHeight/3-13, border:'1px soilid green'}}>
           <div id='left' className = 'col-4 text-left'>
           {this.state.CalendarConfig === 'bottom-left'?(
               <div className="row">

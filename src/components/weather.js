@@ -80,7 +80,7 @@ class Weather extends Component{
         this.timerID = setInterval(
             ()=>
             this.getWeather(this.state.lat, this.state.lon),
-            60000
+            1800000
         );
     }
 
@@ -92,16 +92,17 @@ class Weather extends Component{
        const{city, tempC, tempF, desc} = this.state;
        if(city){
            return(
-                    <div style = {{fontSize: 30, color: 'white'}}>
-                        <div className="row">
-                            <div className="col-6">
-                                <img className="row" alt="Weather Icon" style={{margin:'auto'}} src = {imgArr[this.state.iconIndex]}></img>
-                            </div>
-                            <div className="col-6">
-                                <div className="row">{city}</div>
-                                <div className="row">{desc}</div>
-                                <div className="row">{tempC} &deg;C / {tempF} &deg;F</div>
-                            </div>
+                    <div className="row text-left" 
+                         style = {{color: 'white', marginLeft:1}}> 
+                        <div className="col-auto">
+                            <div className="row" style={{fontSize: 40, fontWeight: 'bold'}}>{city}</div>
+                            <div className="row" style={{fontSize: 32}}>{desc}</div>
+                            <div className="row" style={{fontSize: 32}}>{tempC}&deg;C | {tempF}&deg;F</div>
+                        </div>
+                        <div className="col">
+                            <img alt="Weather Icon" 
+                                    style={{left: 0}} 
+                                    src = {imgArr[this.state.iconIndex]}></img>
                         </div>
                     </div>
            );

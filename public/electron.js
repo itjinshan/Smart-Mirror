@@ -15,8 +15,9 @@ process.env.GOOGLE_API_KEY = 'AIzaSyBjtRUvjcEnZpsmS4xtRF1f5HZ1RRV8qWI';
 
 function createWindow() {
     mainWindow = new BrowserWindow({
-        width: 900, height: 680, x: 0,
-        y: 0,
+        //width: 500, height: 680, x: 0,
+        //y: 0,
+        fullscreen: true,
         darkTheme: true,
         backgroundColor: "#000000",
         webPreferences:{
@@ -38,13 +39,11 @@ function createWindow() {
         callback(true);
     })
 
-    if (isDev) {
-        // Open the DevTools.
-        //BrowserWindow.addDevToolsExtension('<location to your react chrome extension>');
-        mainWindow.webContents.openDevTools();
-    }
-
-
+    // if (isDev) {
+    //     // Open the DevTools.
+    //     //BrowserWindow.addDevToolsExtension('<location to your react chrome extension>');
+    //     mainWindow.webContents.openDevTools();
+    // }
     mainWindow.on('closed', () => mainWindow = null);
 }
 
