@@ -112,13 +112,43 @@ class App extends Component {
 
         <div id='Middle' className='row' style={{margin:'auto', minHeight: window.innerHeight/3-13, border:'1px soilid yellow'}}>
           <div id='left' className = 'col-4'>
-          
+          {this.state.CalendarConfig === 'middle-left'?(
+              <div className="row">
+                <div className='col-8'>
+                  <Calendar className='row'/>
+                </div>
+                <div className="col-4"></div>
+              </div>
+            ): null}
+          {this.state.MapConfig === 'middle-left'?(
+              <div className="row">
+                <div className='col-8'>
+                  <GoogleMap className='row'/>
+                </div>
+                <div className="col-4"></div>
+              </div>
+            ): null}
           </div>
           <div id='center' className = 'col-4'>
             
           </div>
           <div id='right' className = 'col-4'>
-            
+          {this.state.CalendarConfig === 'middle-right'?(
+              <div className="row">
+                <div className='col-8'>
+                  <Calendar className='row'/>
+                </div>
+                <div className="col-4"></div>
+              </div>
+            ): null}
+            {this.state.MapConfig === 'middle-right'?(
+              <div className="row">
+                <div className='col-8'>
+                  <GoogleMap className='row'/>
+                </div>
+                <div className="col-4"></div>
+              </div>
+            ): null}
           </div>
         </div>
         
@@ -149,6 +179,14 @@ class App extends Component {
             ): null}
           </div>
           <div id='right' className = 'col-4 text-right'>
+          {this.state.CalendarConfig === 'bottom-right'?(
+              <div className="row">
+                <div className='col-8'>
+                  <Calendar className='row'/>
+                </div>
+                <div className="col-4"></div>
+              </div>
+            ): null}
           {this.state.MapConfig === 'bottom-right'?(
               <div className="row">
                 <div className="col-4"></div>
