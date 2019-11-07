@@ -5,6 +5,7 @@ import { withScriptjs,
          GoogleMap, 
          Marker,
          TrafficLayer } from "react-google-maps"
+import ETA from './eta';
 
 var userLat; //= 37.3352;
 var userLng; //= -121.8811;
@@ -42,6 +43,7 @@ export class googleMaps extends Component {
         navigator.geolocation.getCurrentPosition(resolve, reject);
     });
   }
+
   componentDidMount(){
     this.getLocation()
     .then((position)=>{
@@ -53,6 +55,7 @@ export class googleMaps extends Component {
         return(
               <div id='maps'
                    style={{alignitems:'right', justifyContent:'right'}}>
+                <ETA/>
                 <MapWithATrafficLayer />
               </div>
         )
