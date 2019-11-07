@@ -61,32 +61,32 @@ export class ETA extends Component{
         //turn light green
         if(this.state.comparison < 15){
             return(
-                <div style = {{fontSize: 25, fontWeight: 'bold', color: '#90ee90'}}>
-                    ETA to work: {this.state.eta}
+                <div style = {{fontSize: 25, fontWeight: 'bold', color: 'white'}}>
+                    ETA to work: <text style = {{color:  '#90ee90'}}>{this.state.eta}</text>
                 </div>
             )
         }
         //turn yellow
         else if(this.state.comparison >= 15 && this.state.comparison < 30){
             return(
-                <div style = {{fontSize: 25, fontWeight: 'bold', color: 'yellow'}}>
-                    ETA to work: {this.state.eta} 
+                <div style = {{fontSize: 25, fontWeight: 'bold', color: 'white'}}>
+                    ETA to work: <text style = {{color:  'yellow'}}>{this.state.eta}</text>
                 </div>
             )
         }
         //turn dark orange
         else if(this.state.comparison >= 30 && this.state.comparison < 45){
             return(
-                <div style = {{fontSize: 25, fontWeight: 'bold', color: '#ff8c00'}}>
-                    ETA to work: {this.state.eta} 
+                <div style = {{fontSize: 25, fontWeight: 'bold', color: 'white'}}>
+                    ETA to work: <text style = {{color: '#ff8c00'}}>{this.state.eta}</text> 
                 </div>
             )
         }
         //turn red
-        else if(this.state.comparison > 45){
+        else if(this.state.comparison >= 45){
             return(
-                <div style = {{fontSize: 25, fontWeight: 'bold', color: 'red'}}>
-                    ETA to work: {this.state.eta}
+                <div style = {{fontSize: 25, fontWeight: 'bold', color: 'white'}}>
+                    ETA to work: <text style = {{color: 'red'}}>{this.state.eta}</text>
                 </div>
             )
         }
