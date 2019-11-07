@@ -3,8 +3,10 @@ import axios from 'axios'
 import SocketIOClient from 'socket.io-client';
 import GoogleMap from './components/googleMap';
 import Time from './components/time';
-import Weather from './components/weather'
-import News from './components/news';
+import WeatherLeft from './components/weatherLeft';
+import WeatherRight from './components/weatherRight';
+import NewsRight from './components/newsRight';
+import NewsLeft from './components/newsLeft';
 import Calendar from './components/googleCalendar';
 import './components/css/mirrorStyle.css';
 
@@ -68,42 +70,32 @@ class App extends Component {
       </div>
         <div id='Top' className='row' style={{minHeight: window.innerHeight/3-13, margin:'auto'}}>
           <div id='left' className = 'col-4 text-left overflow-hidden'>
-            {this.state.Tleft === 'top-left'?(
-                <Weather className='row' />
+            {this.state.WeatherConfig === 'top-left'?(
+                <WeatherLeft className='row' />
             ): null}
-            {this.state.none === 'top-left'?(
+            {this.state.NewsConfig === 'top-left'?(
               <div className="row">
                 <div className='col-8'>
-                  <News className="row" />
+                  <NewsLeft className="row" />
                 </div>
                 <div className='col-4'></div>
               </div>
             ): null}
           </div>
           <div id='center' className = 'col-4 text-center' >
-            {this.state.none === 'top-middle'?(
-              <div>
-                <Weather className='row' />
-              </div>
-            ): null}
-            {this.state.none === 'top-middle'?(
-              <div>
-                <News className="row" />
-              </div>
-            ): null}
+
           </div>
-          <div id='right' className = 'col-4 text-right'>
-            {this.state.none === 'top-right'?(
+          <div id='right' className = 'col-4 text-right overflow-hidden'>
+            {this.state.WeatherConfig === 'top-right'?(
               <div>
-                <Weather className='row' />
+                <WeatherRight className='row' />
               </div>
             ): null}
-            {this.state.NewsTR === 'top-right'?(
+            {this.state.NewsConfig === 'top-right'?(
               <div className="row">
                 <div className='col-4'></div>
                 <div className='col-8'>
-                  <News className="row" />
-
+                  <NewsRight className="row" />
                 </div>
               </div>
             ): null}
@@ -112,13 +104,43 @@ class App extends Component {
 
         <div id='Middle' className='row' style={{margin:'auto', minHeight: window.innerHeight/3-13, border:'1px soilid yellow'}}>
           <div id='left' className = 'col-4'>
-          
+          {this.state.CalendarConfig === 'middle-left'?(
+              <div className="row">
+                <div className='col-8'>
+                  <Calendar className='row'/>
+                </div>
+                <div className="col-4"></div>
+              </div>
+            ): null}
+          {this.state.MapConfig === 'middle-left'?(
+              <div className="row">
+                <div className='col-8'>
+                  <GoogleMap className='row'/>
+                </div>
+                <div className="col-4"></div>
+              </div>
+            ): null}
           </div>
           <div id='center' className = 'col-4'>
             
           </div>
           <div id='right' className = 'col-4'>
-            
+          {this.state.CalendarConfig === 'middle-right'?(
+              <div className="row">
+                <div className='col-8'>
+                  <Calendar className='row'/>
+                </div>
+                <div className="col-4"></div>
+              </div>
+            ): null}
+            {this.state.MapConfig === 'middle-right'?(
+              <div className="row">
+                <div className='col-8'>
+                  <GoogleMap className='row'/>
+                </div>
+                <div className="col-4"></div>
+              </div>
+            ): null}
           </div>
         </div>
         
@@ -149,6 +171,14 @@ class App extends Component {
             ): null}
           </div>
           <div id='right' className = 'col-4 text-right'>
+          {this.state.CalendarConfig === 'bottom-right'?(
+              <div className="row">
+                <div className='col-8'>
+                  <Calendar className='row'/>
+                </div>
+                <div className="col-4"></div>
+              </div>
+            ): null}
           {this.state.MapConfig === 'bottom-right'?(
               <div className="row">
                 <div className="col-4"></div>

@@ -9,7 +9,7 @@ import ScatteredClouds from './pics/scattered-clouds.png';
 
 var imgArr = [Sunny, Cloudy, Raining, CloudyRain, ScatteredClouds, Mist];
 
-class Weather extends Component{
+class WeatherRight extends Component{
     state = {
         lat:  undefined,
         lon:  undefined,
@@ -92,17 +92,17 @@ class Weather extends Component{
        const{city, tempC, tempF, desc} = this.state;
        if(city){
            return(
-                    <div className="row text-left" 
-                         style = {{color: 'white', marginLeft:1}}> 
+                    <div className="row text-right" 
+                         style = {{color: 'white', marginRight:1}}> 
+                        <div className="col">
+                            <img alt="Weather Icon" 
+                                    style={{right: 0}} 
+                                    src = {imgArr[this.state.iconIndex]}></img>
+                        </div>
                         <div className="col-auto">
                             <div className="row" style={{fontSize: 40, fontWeight: 'bold'}}>{city}</div>
                             <div className="row" style={{fontSize: 32}}>{desc}</div>
                             <div className="row" style={{fontSize: 32}}>{tempC}&deg;C | {tempF}&deg;F</div>
-                        </div>
-                        <div className="col">
-                            <img alt="Weather Icon" 
-                                    style={{left: 0}} 
-                                    src = {imgArr[this.state.iconIndex]}></img>
                         </div>
                     </div>
            );
@@ -115,4 +115,4 @@ class Weather extends Component{
     }
 }
 
-export default Weather;
+export default WeatherRight;
