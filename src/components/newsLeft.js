@@ -3,7 +3,7 @@ import axios from 'axios'
 import Carousel from 'react-bootstrap/Carousel'
 import Newsicon from  './pics/newsicon.png';
 
-export default class News extends Component {
+export default class NewsLeft extends Component {
     constructor() {
         super()
         this.state = {
@@ -20,13 +20,12 @@ export default class News extends Component {
         return (
             <div className = "card" 
                  style={{ backgroundColor:'black', 
-                          width: '100%', height: '100%', right:0 }}>
+                          width: '100%', height: '100%', left:0 }}>
                 {this.state.news ?
                     <div className="card-header" 
                         style = {{backgroundColor:'black'}}
                     >
-                        {console.log(this.state.news)}
-                    <div className="text-right" 
+                    <div className="text-left" 
                           style = {{fontWeight: 'bold', 
                                     color: 'white', 
                                     fontSize: 21, 
