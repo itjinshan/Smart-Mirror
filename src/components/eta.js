@@ -23,7 +23,7 @@ export class ETA extends Component{
     getETA = async (latitude, longitude) => {
         axios.get(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/directions/json?origin=${latitude},${longitude}&destination=${this.state.wAddress}&mode=driving&departure_time=now&key=${API_key}`,
         { headers:{ 'Access-Control-Allow-Origin' : '*', 'Access-Control-Allow-Methods' : 'GET,PUT,POST,DELETE,PATCH,OPTIONS'}}).then(results => {
-            var directions = results.data.routes[0].legs[0].duration.text
+            var directions = results.data.routes[0].legs[0].duration_in_traffic.text
             this.setState({ eta: directions })
             {console.log(results.data)}
         }).catch(err => console.log(err))
