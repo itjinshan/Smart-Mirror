@@ -9,6 +9,9 @@ export class ETA extends Component{
         wAddress: "San Jose State University",
         lAddress:undefined,
         eta: undefined,
+        eta_duration: undefined,
+        eta_traffic: undefined,
+        comparison: undefined,
         userLat: undefined,
         userLng: undefined
     }
@@ -21,10 +24,14 @@ export class ETA extends Component{
 
     //get ETA using location coordinates as origin and hard coded address as destination
     getETA = async (latitude, longitude) => {
-        axios.get(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/directions/json?origin=${latitude},${longitude}&destination=${this.state.wAddress}&mode=driving&departure_time=now&key=${API_key}`,
-        { headers:{ 'Access-Control-Allow-Origin' : '*', 'Access-Control-Allow-Methods' : 'GET,PUT,POST,DELETE,PATCH,OPTIONS'}}).then(results => {
-            var directions = results.data.routes[0].legs[0].duration_in_traffic.text
-            this.setState({ eta: directions })
+        axios.get(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/directions/json?origin=${latitude},${longitude}&destination=${this.state.wAddress}&mode=driving&departure_time=now&key=${API_key}`)
+        .then(results => {
+            this.setState({ 
+                eta: results.data.routes[0].legs[0].duration_in_traffic.text,
+                eta_duration: results.data.routes[0].legs[0].duration.value,
+                eta_traffic: results.data.routes[0].legs[0].duration_in_traffic.value,
+                comparison: ((results.data.routes[0].legs[0].duration_in_traffic.value)-(results.data.routes[0].legs[0].duration.value))/60
+            })
             {console.log(results.data)}
         }).catch(err => console.log(err))
     }
@@ -37,10 +44,8 @@ export class ETA extends Component{
             this.setState({
                 userLat: Lat,
                 userLng: Lng
-            })
-            
+            }) 
             this.getETA(position.coords.latitude, position.coords.longitude)
-            
         });
         this.timerID = setInterval(()=>
             this.getETA(this.state.userLat, this.state.userLng),
@@ -53,11 +58,44 @@ export class ETA extends Component{
     }
     
     render(){
-        return(
-            <div style = {{fontSize: 25, fontWeight: 'bold', color: 'white'}}>
-                ETA to work: {this.state.eta}
-            </div>
-        )
+        //turn light green
+        if(this.state.comparison < 15){
+            return(
+                <div style = {{fontSize: 25, fontWeight: 'bold', color: '#90ee90'}}>
+                    ETA to work: {this.state.eta}
+                </div>
+            )
+        }
+        //turn yellow
+        else if(this.state.comparison >= 15 && this.state.comparison < 30){
+            return(
+                <div style = {{fontSize: 25, fontWeight: 'bold', color: 'yellow'}}>
+                    ETA to work: {this.state.eta} 
+                </div>
+            )
+        }
+        //turn dark orange
+        else if(this.state.comparison >= 30 && this.state.comparison < 45){
+            return(
+                <div style = {{fontSize: 25, fontWeight: 'bold', color: '#ff8c00'}}>
+                    ETA to work: {this.state.eta} 
+                </div>
+            )
+        }
+        //turn red
+        else if(this.state.comparison > 45){
+            return(
+                <div style = {{fontSize: 25, fontWeight: 'bold', color: 'red'}}>
+                    ETA to work: {this.state.eta}
+                </div>
+            )
+        }
+        //show nothing
+        else{
+            return(
+                <div></div>
+            )
+        }
     }
 }
 
