@@ -62,7 +62,7 @@ export class ETA extends Component{
         if(this.state.comparison < 15){
             return(
                 <div style = {{fontSize: 25, fontWeight: 'bold', color: 'white'}}>
-                    ETA to work: <text style = {{color:  '#90ee90'}}>{this.state.eta}</text>
+                    ETA to work: <text style = {{color:  '#1aa260'}}>{this.state.eta}</text>
                 </div>
             )
         }
