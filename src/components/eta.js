@@ -58,8 +58,9 @@ export class ETA extends Component{
     }
     
     render(){
+        {console.log(this.state.comparison)}
         //turn light green
-        if(this.state.comparison < 15){
+        if(this.state.comparison < 10){
             return(
                 <div className='text-center' style = {{fontSize: 25, fontWeight: 'bold', color: 'white'}}>
                     ETA to work: <text style = {{color:  '#1aa260'}}>{this.state.eta}</text>
@@ -67,7 +68,7 @@ export class ETA extends Component{
             )
         }
         //turn yellow
-        else if(this.state.comparison >= 15 && this.state.comparison < 30){
+        else if(this.state.comparison >= 10 && this.state.comparison < 15){
             return(
                 <div className='text-center' style = {{fontSize: 25, fontWeight: 'bold', color: 'white'}}>
                     ETA to work: <text style = {{color:  'yellow'}}>{this.state.eta}</text>
@@ -75,7 +76,7 @@ export class ETA extends Component{
             )
         }
         //turn dark orange
-        else if(this.state.comparison >= 30 && this.state.comparison < 45){
+        else if(this.state.comparison >= 15 && this.state.comparison < 30){
             return(
                 <div className='text-center' style = {{fontSize: 25, fontWeight: 'bold', color: 'white'}}>
                     ETA to work: <text style = {{color: '#ff8c00'}}>{this.state.eta}</text> 
@@ -83,7 +84,7 @@ export class ETA extends Component{
             )
         }
         //turn red
-        else if(this.state.comparison >= 45){
+        else if(this.state.comparison >= 30){
             return(
                 <div className='text-center' style = {{fontSize: 25, fontWeight: 'bold', color: 'white'}}>
                     ETA to work: <text style = {{color: 'red'}}>{this.state.eta}</text>
