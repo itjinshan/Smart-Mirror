@@ -16,6 +16,7 @@
     "react-geolocated": "^2.5.1",
     "react-google-maps": "^9.4.5",
     "react-scripts": "3.0.1",
+    "reactstrap": "^8.1.1",
     "socket.io-client": "^2.2.0",
     "superagent": "^5.1.0"
   },

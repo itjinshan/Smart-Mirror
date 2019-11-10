@@ -56,6 +56,11 @@ class App extends Component {
 
       this.socket.on('config:send',(data)=>{
         console.log(data)
+        if(data.config.user && data.config.user.auth.refreshToken){
+          localStorage.setItem('refreshToken',data.config.user.auth.refreshToken)
+          this.setState(data.config)
+          this.forceUpdate()
+        }
         this.setState(data.config)
         console.log(this.state)
       })
@@ -63,7 +68,7 @@ class App extends Component {
 
   render() {
     return (
-      <div id='wholeScreen' style={{maxHeight: window.innerHeight, maxWidth: window.innerWidth}}>
+      <div id='wholeScreen' style={{maxHeight: window.innerHeight, maxWidth: window.innerWidth,backgroundColor:'#000'}}>
       <div id='Time_N_Date' style={{maxHeight: 39, margin:'auto'}}>
         <Time />
       </div>
