@@ -23,6 +23,7 @@ export class googleCalendar extends React.Component {
   }
 
   render () {
+    console.log(this.state.events[0]);
     //var present_date = new Date();
     var difference;
     var todaylist =[];
@@ -63,7 +64,7 @@ export class googleCalendar extends React.Component {
                 <div className = "card" style={{background: 'black'}}>
                   <h5 className = "card-title" style={{color: 'white'}}>{item.title}
                   </h5>
-                  <h6 className ="card-text" style={{color: 'white'}}>From {item.start} To {item.end}</h6>
+                  <h6 className ="card-text" style={{color: 'white'}}>From {new Date(item.start).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})} To {new Date(item.end).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</h6>
                 </div>
                 </CardBody>
                 
