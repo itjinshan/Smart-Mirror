@@ -4,7 +4,9 @@ import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import { getEvents } from './gcal'
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-import {Card, CardBody, CardTitle, CardSubtitle} from 'reactstrap';
+import {Card, CardBody } from 'reactstrap';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
 
 const localizer = momentLocalizer(moment);
 
@@ -24,7 +26,6 @@ export class googleCalendar extends React.Component {
 
   render () {
     console.log(this.state.events[0]);
-    //var present_date = new Date();
     var difference;
     var todaylist =[];
     if(this.state.events.length > 0){
@@ -35,13 +36,6 @@ export class googleCalendar extends React.Component {
       } )
     }
     //console.log(this.state.events[0]);
-    // const elements = [];
-    // console.log(todaylist.length)
-    // for(var i = 0; i < (todaylist.length);i++){
-    //   elements.push(<Card events={todaylist[i]} />);
-    // }
-    // console.log(elements)
-    console.log(difference)
     console.log(todaylist)
     return (
         
@@ -55,21 +49,28 @@ export class googleCalendar extends React.Component {
                         style = {{backgroundColor:'black'}}
             >
               {/* {console.log(this.state.events)} */}
-            {/* <Card> */}
               {/* {this.state.events.map((item, i) => ( */}
+              <Carousel
+                showArrows={false}
+                showStatus={false}
+                showIndicators={false}
+                showThumbs = {false}
+                //axis={"vertical"}
+                infiniteLoop={true}
+                autoPlay={true}
+                interval={12000}
+              >
                 {todaylist.map((item, i) => (
                 <CardBody key= {i}>
-                  {/* <div>{elements}
-                  </div> */}
-                <div className = "card" style={{background: 'black'}}>
-                  <h5 className = "card-title" style={{color: 'white'}}>{item.title}
-                  </h5>
-                  <h6 className ="card-text" style={{color: 'white'}}>From {new Date(item.start).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})} To {new Date(item.end).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</h6>
-                </div>
+                  <div className = "card" style={{background: 'black'}}>
+                    <h5 className = "card-title" style={{color: 'white', fontWeight: 'bold',}}>{item.title}
+                    </h5>
+                    <h6 className ="card-text" style={{color: 'white'}}>From {new Date(item.start).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})} To {new Date(item.end).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</h6>
+                  </div>
                 </CardBody>
                 
               ))}
-            {/* </Card> */}
+              </Carousel>
             </div> : null}
         </div>
         
