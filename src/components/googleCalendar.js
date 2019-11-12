@@ -4,8 +4,10 @@ import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import { getEvents } from './gcal'
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-import {Card, CardBody, CardTitle, CardSubtitle} from 'reactstrap';
-import { format } from 'util';
+import {Card, CardBody } from 'reactstrap';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
+import axios from 'axios'
 
 const localizer = momentLocalizer(moment);
 //const moment = require('moment-timezone');
@@ -15,36 +17,49 @@ export class googleCalendar extends React.Component {
   constructor () {
     super()
     this.state = {
-      events: []
+      events: [],
+      user:null
     }
   }
-  componentDidMount () {
-    getEvents((events) => {
-      this.setState({events})
-    })
-  }
+
+
+  componentDidMount(){
+    const refreshToken = localStorage.getItem('refreshToken')
+    if(refreshToken){
+        axios.get('https://smartmirrorbackend-258605.appspot.com/api/getCalendar',{params:{code:refreshToken}}).then(res=>{
+            if(res.data){
+                this.setState({events:res.data})
+            }
+        })
+    }
+}
+
+componentDidUpdate(prevProps, preState){
+    console.log(preState.user)
+    if(preState.user !== this.props.user){
+    const refreshToken = localStorage.getItem('refreshToken')
+    if(refreshToken){
+        axios.get('https://smartmirrorbackend-258605.appspot.com/api/getCalendar',{params:{code:refreshToken}}).then(res=>{
+            if(res.data){
+                this.setState({events:res.data,user:this.props.user})
+            }
+        })
+    }
+    }
+}
 
   render () {
-    var present_date = new Date();
+    console.log(this.state.events[0]);
     var difference;
-    //var difference = parseInt((this.state.events.getTime() - new Date(moment().tz("America/Los Angeles").format()).setHours(12, 0,0,0))/(1000 *60*60*24)) +1;
     var todaylist =[];
-    //  = this.state.event.filter(date => {difference = parseInt((this.state.events.getTime() - new Date(moment().tz("America/Los Angeles").format()).setHours(12, 0,0,0))/(1000 *60*60*24)) +1;
-    //   date(date.start);
-    //   return difference === 0;
-    // } )
     if(this.state.events.length > 0){
       todaylist = this.state.events.filter(date => {
-        difference = parseInt((new Date(date.start).getTime() - new Date(moment().format()))/(1000 *60*60*24));
+        difference = parseInt((new Date(date.start).getTime() - new Date(moment().format()).setHours(12, 0,0,0))/(1000 *60*60*24));
       //date(date.start);
       return difference === 0;
       } )
     }
     //console.log(this.state.events[0]);
-    // const elements = [];
-    // for(var i = 0; i < (this.state.events.length);i++){
-    //   elements.push(<Card events={this.state.events[i]} />);
-    // }
     console.log(todaylist)
     return (
         
@@ -55,25 +70,31 @@ export class googleCalendar extends React.Component {
                  width: '100%', height: '100%', right:0 }}>
           {(todaylist.length > 0) ?
             <div className="card-header" 
-                        style = {{backgroundColor:'grey'}}
+                        style = {{backgroundColor:'black'}}
             >
               {/* {console.log(this.state.events)} */}
-            <Card>
               {/* {this.state.events.map((item, i) => ( */}
+              <Carousel
+                showArrows={false}
+                showStatus={false}
+                showIndicators={false}
+                showThumbs = {false}
+                //axis={"vertical"}
+                infiniteLoop={true}
+                autoPlay={true}
+                interval={12000}
+              >
                 {todaylist.map((item, i) => (
                 <CardBody key= {i}>
-                  {/* <div>
-                    {elements.start}
-                  </div> */}
-                <div>
-                  <h5 classname = "card" style={{color:'#000', font: "bold"}}>{item.title}
-                  </h5>
-                  <h6>From {item.start} To {item.end}</h6>
-                </div>
+                  <div className = "card" style={{background: 'black'}}>
+                    <h5 className = "card-title" style={{color: 'white', fontWeight: 'bold',}}>{item.summary}
+                    </h5>
+                    <h6 className ="card-text" style={{color: 'white'}}>From {new Date(item.start).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})} To {new Date(item.end).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</h6>
+                  </div>
                 </CardBody>
                 
               ))}
-            </Card>
+              </Carousel>
             </div> : null}
         </div>
         

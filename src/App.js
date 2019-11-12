@@ -3,8 +3,10 @@ import axios from 'axios'
 import SocketIOClient from 'socket.io-client';
 import GoogleMap from './components/googleMap';
 import Time from './components/time';
-import Weather from './components/weather'
-import News from './components/news';
+import WeatherLeft from './components/weatherLeft';
+import WeatherRight from './components/weatherRight';
+import NewsRight from './components/newsRight';
+import NewsLeft from './components/newsLeft';
 import Calendar from './components/googleCalendar';
 import Gmail from './components/gmail';
 import './components/css/mirrorStyle.css';
@@ -75,40 +77,31 @@ class App extends Component {
         <div id='Top' className='row' style={{minHeight: window.innerHeight/3-13, margin:'auto'}}>
           <div id='left' className = 'col-4 text-left overflow-hidden'>
             {this.state.WeatherConfig === 'top-left'?(
-                <Weather className='row' />
+                <WeatherLeft className='row' />
             ): null}
             {this.state.NewsConfig === 'top-left'?(
               <div className="row">
                 <div className='col-8'>
-                  <News className="row" />
+                  <NewsLeft className="row" />
                 </div>
                 <div className='col-4'></div>
               </div>
             ): null}
           </div>
           <div id='center' className = 'col-4 text-center' >
-            {this.state.WeatherConfig === 'top-middle'?(
-              <div>
-                <Weather className='row' />
-              </div>
-            ): null}
-            {this.state.NewsConfig === 'top-middle'?(
-              <div>
-                <News className="row" />
-              </div>
-            ): null}
+
           </div>
-          <div id='right' className = 'col-4 text-right'>
+          <div id='right' className = 'col-4 text-right overflow-hidden'>
             {this.state.WeatherConfig === 'top-right'?(
               <div>
-                <Weather className='row' />
+                <WeatherRight className='row' />
               </div>
             ): null}
             {this.state.NewsConfig === 'top-right'?(
               <div className="row">
                 <div className='col-4'></div>
                 <div className='col-8'>
-                  <News className="row" />
+                  <NewsRight className="row" />
                 </div>
               </div>
             ): null}
