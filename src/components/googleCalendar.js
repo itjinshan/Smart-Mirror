@@ -7,6 +7,7 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import {Card, CardBody } from 'reactstrap';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
+import axios from 'axios'
 
 const localizer = momentLocalizer(moment);
 
@@ -15,14 +16,36 @@ export class googleCalendar extends React.Component {
   constructor () {
     super()
     this.state = {
-      events: []
+      events: [],
+      user:null
     }
   }
-  componentDidMount () {
-    getEvents((events) => {
-      this.setState({events})
-    })
-  }
+
+
+  componentDidMount(){
+    const refreshToken = localStorage.getItem('refreshToken')
+    if(refreshToken){
+        axios.get('https://smartmirrorbackend-258605.appspot.com/api/getCalendar',{params:{code:refreshToken}}).then(res=>{
+            if(res.data){
+                this.setState({events:res.data})
+            }
+        })
+    }
+}
+
+componentDidUpdate(prevProps, preState){
+    console.log(preState.user)
+    if(preState.user !== this.props.user){
+    const refreshToken = localStorage.getItem('refreshToken')
+    if(refreshToken){
+        axios.get('https://smartmirrorbackend-258605.appspot.com/api/getCalendar',{params:{code:refreshToken}}).then(res=>{
+            if(res.data){
+                this.setState({events:res.data,user:this.props.user})
+            }
+        })
+    }
+    }
+}
 
   render () {
     console.log(this.state.events[0]);
@@ -63,7 +86,7 @@ export class googleCalendar extends React.Component {
                 {todaylist.map((item, i) => (
                 <CardBody key= {i}>
                   <div className = "card" style={{background: 'black'}}>
-                    <h5 className = "card-title" style={{color: 'white', fontWeight: 'bold',}}>{item.title}
+                    <h5 className = "card-title" style={{color: 'white', fontWeight: 'bold',}}>{item.summary}
                     </h5>
                     <h6 className ="card-text" style={{color: 'white'}}>From {new Date(item.start).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})} To {new Date(item.end).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</h6>
                   </div>
