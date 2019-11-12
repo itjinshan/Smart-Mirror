@@ -64,7 +64,7 @@ class App extends Component {
 
   render() {
     return (
-      <div id='wholeScreen' style={{maxHeight: window.innerHeight, maxWidth: window.innerWidth}}>
+      <div id='wholeScreen' style={{maxHeight: window.innerHeight, maxWidth: window.innerWidth,backgroundColor:'#000'}}>
       <div id='Time_N_Date' style={{maxHeight: 39, margin:'auto'}}>
         <Time />
       </div>
