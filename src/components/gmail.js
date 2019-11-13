@@ -13,11 +13,12 @@ export default class Gmail extends Component {
     componentDidMount(){
         const refreshToken = localStorage.getItem('refreshToken')
         if(refreshToken){
-            axios.get('https://smartmirrorbackend-258605.appspot.com/api/getGmail',{params:{code:refreshToken}}).then(res=>{
+            axios.get('https://expoclientbackend.appspot.com/api/getGmail',{params:{code:refreshToken}}).then(res=>{
                 if(res.data){
+                    console.log(res.data)
                     this.setState({gmailList:res.data})
                 }
-            })
+            }).catch(e=>console.log(e))
         }
     }
 
@@ -26,7 +27,7 @@ export default class Gmail extends Component {
         if(preState.user !== this.props.user){
         const refreshToken = localStorage.getItem('refreshToken')
         if(refreshToken){
-            axios.get('https://smartmirrorbackend-258605.appspot.com/api/getGmail',{params:{code:refreshToken}}).then(res=>{
+            axios.get('https://expoclientbackend.appspot.com/api/getGmail',{params:{code:refreshToken}}).then(res=>{
                 if(res.data){
                     this.setState({gmailList:res.data,user:this.props.user})
                 }
