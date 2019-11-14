@@ -8,7 +8,8 @@ import WeatherRight from './components/weatherRight';
 import NewsRight from './components/newsRight';
 import NewsLeft from './components/newsLeft';
 import Calendar from './components/googleCalendar';
-import Gmail from './components/gmail';
+import GmailRight from './components/gmailRight';
+import GmailLeft from './components/gmailLeft';
 import './components/css/mirrorStyle.css';
 
 const electron = window.require('electron');
@@ -89,10 +90,10 @@ class App extends Component {
                 <div className='col-4'></div>
               </div>
             ): null}
-            {this.state.GmailConfig == 'top-left'? (
+            {this.state.GmailConfig === 'top-left'? (
               <div className="row">
                 <div className='col-9'>
-                  <Gmail user={this.state.user} />
+                  <GmailLeft user={this.state.user} />
                 </div>                
                 <div className='col-3'></div>
               </div>
@@ -115,11 +116,11 @@ class App extends Component {
                 </div>
               </div>
             ): null}
-            {this.state.GmailConfig == 'top-right'? (
+            {this.state.GmailConfig === 'top-right'? (
               <div className="row">
                 <div className='col-3'></div>
                 <div className='col-9'>
-                  <Gmail user={this.state.user} />
+                  <GmailRight user={this.state.user} />
                 </div>
               </div>
             ): null} 
@@ -144,10 +145,10 @@ class App extends Component {
                 <div className="col-4"></div>
               </div>
             ): null}
-            {this.state.GmailConfig == 'middle-left'? (
+            {this.state.GmailConfig === 'middle-left'? (
               <div className="row">
                 <div className='col-9'>
-                  <Gmail user={this.state.user} />
+                  <GmailLeft user={this.state.user} />
                 </div>                
                 <div className='col-3'></div>
               </div>
@@ -172,11 +173,11 @@ class App extends Component {
                 </div>
               </div>
             ): null}
-            {this.state.GmailConfig == 'middle-right'? (
+            {this.state.GmailConfig === 'middle-right'? (
               <div className="row">
                 <div className='col-3'></div>
                 <div className='col-9'>
-                  <Gmail user={this.state.user} />
+                  <GmailRight user={this.state.user} />
                 </div>
               </div>
             ): null} 
@@ -204,7 +205,7 @@ class App extends Component {
             {this.state.GmailConfig == 'bottom-left'? (
               <div className="row">
                 <div className='col-9'>
-                  <Gmail user={this.state.user} />
+                  <GmailLeft user={this.state.user} />
                 </div>
                 <div className='col-3'></div>
               </div>
@@ -234,11 +235,11 @@ class App extends Component {
                 </div>
               </div>
             ): null}
-            {this.state.GmailConfig == 'bottom-right'? (
+            {this.state.GmailConfig === 'bottom-right'? (
               <div className="row">
                 <div className='col-3'></div>
                 <div className='col-9'>
-                  <Gmail user={this.state.user} />
+                  <GmailRight user={this.state.user} />
                 </div>
               </div>
             ): null} 

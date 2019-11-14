@@ -7,7 +7,7 @@ import moment from 'moment';
 import axios from 'axios'
 // const {google} = require('googleapis')
 
-export default class Gmail extends Component {
+export default class GmailLeft extends Component {
     constructor(props){
         super(props)
         this.state = {gmailList:[],user:null}
@@ -60,7 +60,7 @@ export default class Gmail extends Component {
                     <div className="card-header" 
                          style = {{backgroundColor:'black'}}
                     >
-                        <div className="text-right" 
+                        <div className="text-left" 
                           style = {{fontWeight: 'bold', 
                                     color: 'white', 
                                     fontSize: 21, 
