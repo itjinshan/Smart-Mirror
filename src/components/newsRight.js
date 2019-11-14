@@ -45,19 +45,15 @@ export default class NewsRight extends Component {
                                     <div 
                                          style = {{borderColor: '#353c51'}}
                                     >
-
-                                        {/* </div>
-                                        <div className="card-body" 
-                                             style = {{backgroundColor: '#353c51'}}> */}
-                                            <h5 className="card-title mt-3 text-left" 
-                                                style = {{color: 'white', 
-                                                          fontWeight: 'bold',
-                                                          fontSize: 25, top: 10}}>{item.title}
-                                            </h5>
-                                            <p className="card-text text-left" 
-                                               style = {{color: 'white'}}>{item.description}
-                                            </p>
-                                        </div>
+                                        <h5 className="card-title mt-3 text-left" 
+                                            style = {{color: 'white', 
+                                                    fontWeight: 'bold',
+                                                    fontSize: 25, top: 10}}>{item.title}
+                                        </h5>
+                                        <p className="card-text text-left" 
+                                        style = {{color: 'white'}}>{item.description}
+                                        </p>
+                                    </div>
                                     
                                 </Carousel.Item>
                         )}
