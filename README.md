@@ -33,7 +33,7 @@ one’s appearance while staying up to date with the latest events.
 
 #### Story-Board Rules
 
-Story-Board link: 
+Story-Board link: https://github.com/itjinshan/Smart-Mirror/projects/1
 
 ```
 #To Do

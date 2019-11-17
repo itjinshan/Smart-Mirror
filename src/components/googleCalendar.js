@@ -10,6 +10,7 @@ import { Carousel } from 'react-responsive-carousel';
 import axios from 'axios'
 
 const localizer = momentLocalizer(moment);
+//const moment = require('moment-timezone');
 
 
 export class googleCalendar extends React.Component {
@@ -34,7 +35,6 @@ export class googleCalendar extends React.Component {
 }
 
 componentDidUpdate(prevProps, preState){
-    console.log(preState.user)
     if(preState.user !== this.props.user){
     const refreshToken = localStorage.getItem('refreshToken')
     if(refreshToken){
@@ -48,7 +48,6 @@ componentDidUpdate(prevProps, preState){
 }
 
   render () {
-    console.log(this.state.events[0]);
     var difference;
     var todaylist =[];
     if(this.state.events.length > 0){
@@ -59,7 +58,6 @@ componentDidUpdate(prevProps, preState){
       } )
     }
     //console.log(this.state.events[0]);
-    console.log(todaylist)
     return (
         
         //<div style={{backgroundColor:'#77AABF'}}>
@@ -88,7 +86,8 @@ componentDidUpdate(prevProps, preState){
                   <div className = "card" style={{background: 'black'}}>
                     <h5 className = "card-title" style={{color: 'white', fontWeight: 'bold',}}>{item.summary}
                     </h5>
-                    <h6 className ="card-text" style={{color: 'white'}}>From {new Date(item.start).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})} To {new Date(item.end).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</h6>
+                    <h6 className ="card-text" style={{color: 'white'}}>From {new Date(item.start).toLocaleString([], {month: '2-digit', day: '2-digit', hour: '2-digit', minute:'2-digit'})}</h6>
+                    <h6 className ="card-text" style={{color: 'white'}}>To {new Date(item.end).toLocaleTimeString([], {month: '2-digit', day: '2-digit', hour: '2-digit', minute:'2-digit'})}</h6>
                   </div>
                 </CardBody>
                 

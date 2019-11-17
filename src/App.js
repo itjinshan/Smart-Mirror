@@ -8,6 +8,8 @@ import WeatherRight from './components/weatherRight';
 import NewsRight from './components/newsRight';
 import NewsLeft from './components/newsLeft';
 import Calendar from './components/googleCalendar';
+import GmailRight from './components/gmailRight';
+import GmailLeft from './components/gmailLeft';
 import './components/css/mirrorStyle.css';
 
 const electron = window.require('electron');
@@ -25,8 +27,10 @@ class App extends Component {
          NewsConfig: "OFF", 
          DateConfig: "OFF", 
          CalendarConfig: "bottom-left",
+         GmailConfig: "OFF",
+         
          DeviceID:"",
-
+         user:null,
 
          Tcenter:"top-middle",
          Tright:"top-right",
@@ -38,7 +42,6 @@ class App extends Component {
          NewsTL:"top-left",
          NewsTC:"top-middle",
          none:"none",
-
         }
         this.socket = SocketIOClient('ec2-18-212-195-64.compute-1.amazonaws.com', { transports: ['websocket'] });
   }
@@ -58,7 +61,13 @@ class App extends Component {
 
       this.socket.on('config:send',(data)=>{
         console.log(data)
+        if(data.config.user && data.config.user.auth.refreshToken){
+          localStorage.setItem('refreshToken',data.config.user.auth.refreshToken)
+          this.setState(data.config)
+          this.forceUpdate()
+        }
         this.setState(data.config)
+        console.log(this.state)
       })
   }
 
@@ -81,6 +90,14 @@ class App extends Component {
                 <div className='col-4'></div>
               </div>
             ): null}
+            {this.state.GmailConfig === 'top-left'? (
+              <div className="row">
+                <div className='col-9'>
+                  <GmailLeft user={this.state.user} />
+                </div>                
+                <div className='col-3'></div>
+              </div>
+            ): null} 
           </div>
           <div id='center' className = 'col-4 text-center' >
 
@@ -93,12 +110,20 @@ class App extends Component {
             ): null}
             {this.state.NewsConfig === 'top-right'?(
               <div className="row">
-                <div className='col-4'></div>
-                <div className='col-8'>
+                <div className='col-3'></div>
+                <div className='col-9'>
                   <NewsRight className="row" />
                 </div>
               </div>
             ): null}
+            {this.state.GmailConfig === 'top-right'? (
+              <div className="row">
+                <div className='col-3'></div>
+                <div className='col-9'>
+                  <GmailRight user={this.state.user} />
+                </div>
+              </div>
+            ): null} 
           </div>
         </div>
 
@@ -120,27 +145,42 @@ class App extends Component {
                 <div className="col-4"></div>
               </div>
             ): null}
+            {this.state.GmailConfig === 'middle-left'? (
+              <div className="row">
+                <div className='col-9'>
+                  <GmailLeft user={this.state.user} />
+                </div>                
+                <div className='col-3'></div>
+              </div>
+            ): null} 
           </div>
           <div id='center' className = 'col-4'>
-            
           </div>
           <div id='right' className = 'col-4'>
           {this.state.CalendarConfig === 'middle-right'?(
               <div className="row">
+                <div className="col-4"></div>
                 <div className='col-8'>
                   <Calendar className='row'/>
                 </div>
-                <div className="col-4"></div>
               </div>
             ): null}
             {this.state.MapConfig === 'middle-right'?(
               <div className="row">
+                <div className="col-4"></div>
                 <div className='col-8'>
                   <GoogleMap className='row'/>
                 </div>
-                <div className="col-4"></div>
               </div>
             ): null}
+            {this.state.GmailConfig === 'middle-right'? (
+              <div className="row">
+                <div className='col-3'></div>
+                <div className='col-9'>
+                  <GmailRight user={this.state.user} />
+                </div>
+              </div>
+            ): null} 
           </div>
         </div>
         
@@ -162,6 +202,14 @@ class App extends Component {
                 <div className="col-4"></div>
               </div>
             ): null}
+            {this.state.GmailConfig == 'bottom-left'? (
+              <div className="row">
+                <div className='col-9'>
+                  <GmailLeft user={this.state.user} />
+                </div>
+                <div className='col-3'></div>
+              </div>
+            ): null} 
           </div>
           <div id='center' className = 'col-4 text-center'>
           {this.state.MapConfig === 'bottom-middle'?(
@@ -187,6 +235,14 @@ class App extends Component {
                 </div>
               </div>
             ): null}
+            {this.state.GmailConfig === 'bottom-right'? (
+              <div className="row">
+                <div className='col-3'></div>
+                <div className='col-9'>
+                  <GmailRight user={this.state.user} />
+                </div>
+              </div>
+            ): null} 
           </div>
         </div>
       </div>
