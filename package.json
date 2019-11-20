@@ -1,0 +1,59 @@
+{
+  "name": "smart-mirror",
+  "version": "0.1.0",
+  "private": true,
+  "main": "public/electron.js",
+  "dependencies": {
+    "artyom.js": "^1.0.6",
+    "axios": "^0.19.0",
+    "bootstrap": "^4.3.1",
+    "electron-is-dev": "^1.1.0",
+    "google-maps-react": "^2.0.2",
+    "googleapis": "^44.0.0",
+    "macaddress": "^0.2.9",
+    "react": "^16.8.6",
+    "react-bootstrap": "^1.0.0-beta.10",
+    "react-browser-detection": "^1.2.1",
+    "react-dom": "^16.8.6",
+    "react-geolocated": "^2.5.0",
+    "react-google-maps": "^9.4.5",
+    "react-responsive-carousel": "^3.1.51",
+    "react-scripts": "3.0.1",
+    "reactstrap": "^8.1.1",
+    "socket.io-client": "^2.2.0",
+    "superagent": "^5.1.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "electron-dev": "concurrently \"cross-env BROWSER=none npm start\" \"wait-on http://localhost:3000 && electron .\""
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "concurrently": "^4.1.1",
+    "cross-env": "^5.2.0",
+    "css-loader": "^3.2.0",
+    "electron": "^5.0.7",
+    "electron-builder": "^21.1.1",
+    "moment": "^2.24.0",
+    "react-big-calendar": "^0.22.0",
+    "style-loader": "^1.0.0",
+    "wait-on": "^3.3.0"
+  }
+}
