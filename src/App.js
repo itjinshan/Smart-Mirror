@@ -413,7 +413,7 @@ class App extends Component {
           </div>
         </div>
       </div>
-    ) } else{return ( <div id='wholeScreen' style={{maxHeight: window.innerHeight, maxWidth: window.innerWidth,backgroundColor:'#000'}}></div>)};
+    ) } else{return ( <div id='wholeScreen' style={{minHeight: window.innerHeight, minWidth: window.innerWidth,backgroundColor:'#000'}}></div>)};
   }
 }
 
