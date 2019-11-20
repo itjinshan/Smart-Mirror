@@ -4,6 +4,7 @@
   "private": true,
   "main": "public/electron.js",
   "dependencies": {
+    "artyom.js": "^1.0.6",
     "axios": "^0.19.0",
     "bootstrap": "^4.3.1",
     "electron-is-dev": "^1.1.0",
@@ -12,6 +13,7 @@
     "macaddress": "^0.2.9",
     "react": "^16.8.6",
     "react-bootstrap": "^1.0.0-beta.10",
+    "react-browser-detection": "^1.2.1",
     "react-dom": "^16.8.6",
     "react-geolocated": "^2.5.0",
     "react-google-maps": "^9.4.5",
