@@ -37,6 +37,13 @@ export default class ArtyomCommandsManager {
                     Artyom.say("Ready ! What were you expecting? write some code you lazy bear !");
                 }
             },
+            {
+                indexes:["Turn it off"],
+                smart:true,
+                action:()=>{
+                    Artyom.dontObey()
+                }
+            },
         ]);
     }
 }

@@ -40,7 +40,7 @@ class App extends Component {
          CalendarConfig: "bottom-left",
          GmailConfig: "OFF",
          
-         DeviceID:"",
+         DeviceID:"9c:b6:d0:e6:ef:53",
          user:null,
 
          Tcenter:"top-middle",
@@ -59,12 +59,53 @@ class App extends Component {
         }
         this.socket = SocketIOClient('ec2-18-212-195-64.compute-1.amazonaws.com', { transports: ['websocket'] });
         // Load some commands to Artyom using the commands manager
-        let CommandsManager = new ArtyomCommandsManager(Jarvis);
-        CommandsManager.loadCommands();
+
+        var myGroup = [
+          {
+              indexes: ["Hello", "Hi"],
+              action: () => {
+                  Jarvis.say("Hello, how are you?");
+              }
+          },
+          {
+              indexes: [/How are you/, /Regular expressions supported/],
+              smart: true,
+              action: () => {
+                  Jarvis.say("I'm fine, thanks for asking !");
+              }
+          },
+          {
+              indexes: ["Generate reports of * of this year"],
+              smart: true,
+              action: (i, month) => {
+                  let year = new Date().getFullYear();
+                  
+                  Jarvis.say(`Generating reports of ${month} ${year} `);
+
+                  Jarvis.say("Ready ! What were you expecting? write some code you lazy bear !");
+              }
+          },
+          {
+              indexes:["Turn it off"],
+              action:()=>{
+                  Jarvis.dontObey()
+                  this.setState({artyomActive: false})
+              }
+          },
+          {
+            indexes:["bring it up"],
+            action:()=>{
+                this.setState({artyomActive: true})
+            }
+          },
+      ]
+      Jarvis.addCommands(myGroup);
+
+        // let CommandsManager = new ArtyomCommandsManager(Jarvis);
+        // CommandsManager.loadCommands();
   }
 
   componentDidMount(){
-
     // ipcRenderer.send('mac:get','get')
     // ipcRenderer.on('mac:send',(event,mac)=>{
     //   axios.get('http://ec2-18-212-195-64.compute-1.amazonaws.com/api/configDisplay',{params:{DeviceID:mac}}).then(res=>{
@@ -75,6 +116,13 @@ class App extends Component {
     //     }})
     //   }).catch(err=>console.log(err))
     // })
+    axios.get('http://ec2-18-212-195-64.compute-1.amazonaws.com/api/configDisplay',{params:{DeviceID:this.state.DeviceID}}).then(res=>{
+      console.log(res.data)
+      this.setState(res.data)
+      this.socket.emit('config:receive',{ config: {
+        DeviceID:res.data.DeviceID
+      }})
+    }).catch(err=>console.log(err))
 
       this.socket.on('config:send',(data)=>{
         console.log(data)
@@ -86,6 +134,8 @@ class App extends Component {
         this.setState(data.config)
         console.log(this.state)
       })
+
+      this.startAssistant()
   }
 
   //////////////////////
@@ -101,12 +151,13 @@ class App extends Component {
         continuous: true,
         soundex: true,
         listen: true,
-        mode:"normal"
+        mode:"normal",
+        obeyKeyword: "bring it up",
+        //name:'Friday'
       }).then(() => {
         // Display loaded commands in the console
         console.log(Jarvis.getAvailableCommands());
-  
-        Jarvis.say("Hello World!");
+        Jarvis.say("Hi, What can I do for you");
   
         _this.setState({
           artyomActive: true
@@ -161,28 +212,24 @@ class App extends Component {
 
   
   render() {
-    const browserHandler = {
-      chrome: () => console.log('chrome'),
-      googlebot: () => console.log('googlebot'),
-      default: (browser) => console.log(browser),
-    };
+    if(this.state.artyomActive){
     return (
       <div id='wholeScreen' style={{maxHeight: window.innerHeight, maxWidth: window.innerWidth,backgroundColor:'#000'}}>
       <div id='Time_N_Date' style={{maxHeight: 39, margin:'auto'}}>
         <Time />
       </div>
-       {/* Voice commands action buttons */}
+       {/* Voice commands action buttons
                 <input type="button" value="Start Artyom" disabled={this.state.artyomActive} onClick={this.startAssistant}/>
                 <input type="button" value="Stop Artyom" disabled={!this.state.artyomActive} onClick={this.stopAssistant}/>
 
                 {/* Speech synthesis Area */}
 
-                <p>I can read some text for you if you want:</p>
+                {/* <p>I can read some text for you if you want:</p>
         
                 <textarea rows="5" onChange={this.handleTextareaChange} value={this.state.textareaValue}/>
-                <br/>
+                <br/> */}
                 {/* Read the text inside the textarea with artyom */}
-                <input type="button" value="Read Text" disabled={this.state.artyomIsReading} onClick={this.speakText}/>
+                {/* <input type="button" value="Read Text" disabled={this.state.artyomIsReading} onClick={this.speakText}/>  */}
         <div id='Top' className='row' style={{minHeight: window.innerHeight/3-13, margin:'auto'}}>
           <div id='left' className = 'col-4 text-left overflow-hidden'>
             {this.state.WeatherConfig === 'top-left'?(
@@ -352,7 +399,7 @@ class App extends Component {
           </div>
         </div>
       </div>
-    );
+    ) } else{return ( <div id='wholeScreen' style={{maxHeight: window.innerHeight, maxWidth: window.innerWidth,backgroundColor:'#000'}}></div>)};
   }
 }
 
