@@ -20,6 +20,7 @@ function createWindow() {
         fullscreen: true,
         darkTheme: true,
         backgroundColor: "#000000",
+        autoHideMenuBar:true,
         webPreferences:{
             nodeIntegration:true,
             devTools:true,
