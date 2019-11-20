@@ -6,14 +6,14 @@ import { getEvents } from './gcal'
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import {Card, CardBody } from 'reactstrap';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from 'react-responsive-carousel';
+import Carousel from 'react-bootstrap/Carousel'
 import axios from 'axios'
 
 const localizer = momentLocalizer(moment);
 //const moment = require('moment-timezone');
 
 
-export class googleCalendar extends React.Component {
+export class googleCalendarLeft extends React.Component {
   constructor () {
     super()
     this.state = {
@@ -69,52 +69,49 @@ componentDidUpdate(prevProps, preState){
             <div className="card-header" 
                         style = {{backgroundColor:'black'}}
             >
-              {/* {console.log(this.state.events)} */}
-              {/* {this.state.events.map((item, i) => ( */}
+              <div className="text-left" 
+                    style = {{fontWeight: 'bold', 
+                              color: 'white', 
+                              fontSize: 21, 
+                              borderBottom:'1px solid white'}}>
+                  Upcoming Events
+              </div>
               <Carousel
-                showArrows={false}
-                showStatus={false}
-                showIndicators={false}
-                showThumbs = {false}
-                //axis={"vertical"}
-                infiniteLoop={true}
-                autoPlay={true}
-                interval={12000}
+                  controls={false}
+                  indicators={false}
+                  interval={12000}
+                  duration={5000}
+                  wrap = {true}
+                  pauseOnHover= {false}
               >
                 {todaylist.map((item, i) => (
-                <CardBody key= {i}>
-                  <div className = "card" style={{background: 'black'}}>
-                    <h5 className = "card-title" style={{color: 'white', fontWeight: 'bold',}}>{item.summary}
-                    </h5>
-                    <h6 className ="card-text" style={{color: 'white'}}>From {new Date(item.start).toLocaleString([], {month: '2-digit', day: '2-digit', hour: '2-digit', minute:'2-digit'})}</h6>
-                    <h6 className ="card-text" style={{color: 'white'}}>To {new Date(item.end).toLocaleTimeString([], {month: '2-digit', day: '2-digit', hour: '2-digit', minute:'2-digit'})}</h6>
+                  <Carousel.Item key={i}>
+                  <div 
+                        style = {{borderColor: '#353c51'}}
+                  >
+                      <h5 className="card-title mt-3 text-left" 
+                          style = {{color: 'white', 
+                                  fontWeight: 'bold',
+                                  fontSize: 25, top: 10}}>{item.summary}
+                      </h5>
+                      <p className="card-text text-right" 
+                      style = {{color: 'white'}}>From {new Date(item.start).toLocaleString([], {month: '2-digit', day: '2-digit', hour: '2-digit', minute:'2-digit'})}
+                      </p>
+                      <p className="card-text text-right" 
+                      style = {{color: 'white'}}>To {new Date(item.end).toLocaleString([], {month: '2-digit', day: '2-digit', hour: '2-digit', minute:'2-digit'})}
+                      </p>
                   </div>
-                </CardBody>
-                
+                  
+                </Carousel.Item>
+
               ))}
               </Carousel>
             </div> : null}
         </div>
-        
-         
-          
-      //  <Calendar
-      //   style={{ height: '100%',width: '100%', color: '#FFFFFF99', fontSize: '63%'}}
-      //   events={this.state.events}
-      //   localizer={localizer}
-      //   toolbar={false}
-      //   defaultView={"agenda"}
-      //   defaultDate={moment().toDate()}
-      //   //startAccessor = "start"
-      //   //endAccessor = "end"
-      //   //length={0.5}
-      //   //length = {1}
-      //   //onSelectEvent={event => alert(event.title)}
-      // /> 
     )
   }
 }
 
 render(<googleCalendar />, document.getElementById('root'))
 
-export default googleCalendar;
+export default googleCalendarLeft;

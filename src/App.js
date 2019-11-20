@@ -7,7 +7,8 @@ import WeatherLeft from './components/weatherLeft';
 import WeatherRight from './components/weatherRight';
 import NewsRight from './components/newsRight';
 import NewsLeft from './components/newsLeft';
-import Calendar from './components/googleCalendar';
+import CalendarRight from './components/googleCalendarRight';
+import CalendarLeft from './components/googleCalendarLeft';
 import GmailRight from './components/gmailRight';
 import GmailLeft from './components/gmailLeft';
 import './components/css/mirrorStyle.css';
@@ -251,6 +252,14 @@ class App extends Component {
                 <div className='col-3'></div>
               </div>
             ): null} 
+            {this.state.CalendarConfig === 'top-left'?(
+              <div className="row">
+                <div className='col-8'>
+                  <CalendarLeft className='row'/>
+                </div>
+                <div className="col-4"></div>
+              </div>
+            ): null}
           </div>
           <div id='center' className = 'col-4 text-center' >
 
@@ -277,6 +286,14 @@ class App extends Component {
                 </div>
               </div>
             ): null} 
+            {this.state.CalendarConfig === 'top-right'?(
+              <div className="row">
+                <div className="col-4"></div>
+                <div className='col-8'>
+                  <CalendarRight className='row'/>
+                </div>
+              </div>
+            ): null}
           </div>
         </div>
 
@@ -285,7 +302,7 @@ class App extends Component {
           {this.state.CalendarConfig === 'middle-left'?(
               <div className="row">
                 <div className='col-8'>
-                  <Calendar className='row'/>
+                  <CalendarLeft className='row'/>
                 </div>
                 <div className="col-4"></div>
               </div>
@@ -314,7 +331,7 @@ class App extends Component {
               <div className="row">
                 <div className="col-4"></div>
                 <div className='col-8'>
-                  <Calendar className='row'/>
+                  <CalendarRight className='row'/>
                 </div>
               </div>
             ): null}
@@ -342,7 +359,7 @@ class App extends Component {
           {this.state.CalendarConfig === 'bottom-left'?(
               <div className="row">
                 <div className='col-8'>
-                  <Calendar className='row'/>
+                  <CalendarLeft className='row'/>
                 </div>
                 <div className="col-4"></div>
               </div>
@@ -374,10 +391,10 @@ class App extends Component {
           <div id='right' className = 'col-4 text-right'>
           {this.state.CalendarConfig === 'bottom-right'?(
               <div className="row">
-                <div className='col-8'>
-                  <Calendar className='row'/>
-                </div>
                 <div className="col-4"></div>
+                <div className='col-8'>
+                  <CalendarRight className='row'/>
+                </div>
               </div>
             ): null}
           {this.state.MapConfig === 'bottom-right'?(
