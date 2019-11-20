@@ -157,7 +157,7 @@ class App extends Component {
           {this.state.MapConfig === 'middle-left'?(
               <div className="row">
                 <div className='col-8'>
-                  <GoogleMap className='row'/>
+                  <GoogleMap className='row' address={this.state.Address}/>
                 </div>
                 <div className="col-4"></div>
               </div>
@@ -186,7 +186,7 @@ class App extends Component {
               <div className="row">
                 <div className="col-4"></div>
                 <div className='col-8'>
-                  <GoogleMap className='row'/>
+                  <GoogleMap className='row' address={this.state.Address}/>
                 </div>
               </div>
             ): null}
@@ -214,7 +214,7 @@ class App extends Component {
           {this.state.MapConfig === 'bottom-left'?(
               <div className="row">
                 <div className='col-8'>
-                  <GoogleMap className='row'/>
+                  <GoogleMap className='row'  address={this.state.Address}/>
                 </div>
                 <div className="col-4"></div>
               </div>
@@ -231,7 +231,7 @@ class App extends Component {
           <div id='center' className = 'col-4 text-center'>
           {this.state.MapConfig === 'bottom-middle'?(
               <div>
-                <GoogleMap className='row'/>
+                <GoogleMap className='row' address={this.state.Address}/>
               </div>
             ): null}
           </div>
@@ -248,7 +248,7 @@ class App extends Component {
               <div className="row">
                 <div className="col-4"></div>
                 <div className="col-8">
-                  <GoogleMap className='row'/>
+                  <GoogleMap className='row' address={this.state.Address}/>
                 </div>
               </div>
             ): null}

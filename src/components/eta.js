@@ -5,15 +5,19 @@ import axios from 'axios'
 const API_key = 'AIzaSyBjtRUvjcEnZpsmS4xtRF1f5HZ1RRV8qWI'
 
 export class ETA extends Component{
-    state = {
-        wAddress: "San Jose State University",
-        lAddress:undefined,
-        eta: undefined,
-        eta_duration: undefined,
-        eta_traffic: undefined,
-        comparison: undefined,
-        userLat: undefined,
-        userLng: undefined
+    constructor(props) {
+        super(props)
+        this.state = {
+            wAddress: this.props.address,
+            lAddress: undefined,
+            eta: undefined,
+            eta_duration: undefined,
+            eta_traffic: undefined,
+            comparison: undefined,
+            userLat: undefined,
+            userLng: undefined
+        }
+
     }
 
     getLocation = () =>{
@@ -24,7 +28,7 @@ export class ETA extends Component{
 
     //get ETA using location coordinates as origin and hard coded address as destination
     getETA = async (latitude, longitude) => {
-        axios.get(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/directions/json?origin=${latitude},${longitude}&destination=${this.state.wAddress}&mode=driving&departure_time=now&key=${API_key}`)
+       await axios.get(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/directions/json?origin=${latitude},${longitude}&destination=${this.state.wAddress}&mode=driving&departure_time=now&key=${API_key}`)
         .then(results => {
             this.setState({ 
                 eta: results.data.routes[0].legs[0].duration_in_traffic.text,
@@ -37,6 +41,10 @@ export class ETA extends Component{
     }
 
     componentDidMount(){
+        console.log(this.props)
+        if(this.props.adress){
+          this.setState({wAddress:this.props.address})
+        }
         this.getLocation()
         .then((position)=>{
             var Lat = position.coords.latitude
@@ -53,12 +61,19 @@ export class ETA extends Component{
         );
     }
 
+    // componentDidUpdate(prevProps, preState){
+    //     console.log(preState.address)
+    //     if(preState.address !== this.props.address){
+    //       this.setState({wAddress:this.props.address});
+    //     }
+    // }
+
     componentWillUnmount(){
         clearInterval(this.timerID);
     }
     
     render(){
-        {console.log(this.state.comparison)}
+        {console.log(this.state.wAddress)}
         //turn light green
         if(this.state.comparison < 10){
             return(
