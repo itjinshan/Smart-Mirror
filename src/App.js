@@ -38,7 +38,7 @@ class App extends Component {
          CalendarConfig: "bottom-left",
          GmailConfig: "OFF",
          
-         DeviceID:"9c:b6:d0:e6:ef:53",
+         DeviceID:"",
          user:null,
 
          Tcenter:"top-middle",
