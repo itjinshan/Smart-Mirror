@@ -19,7 +19,7 @@ function createWindow() {
         //y: 0,
         fullscreen: true,
         darkTheme: true,
-        backgroundColor: "#000000",
+
         webPreferences:{
             nodeIntegration:true,
             devTools:true,
