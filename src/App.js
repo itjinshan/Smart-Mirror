@@ -16,9 +16,6 @@ import BrowserDetection from 'react-browser-detection';
 
 import Artyom from 'artyom.js';
 
-// Import the previously created class to handle the commands from another file
-import ArtyomCommandsManager from './components/ArtyomCommands';
-
 // const electron = window.require('electron');
 // const ipcRenderer  = electron.ipcRenderer;
 
