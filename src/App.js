@@ -12,12 +12,12 @@ import CalendarLeft from './components/googleCalendarLeft';
 import GmailRight from './components/gmailRight';
 import GmailLeft from './components/gmailLeft';
 import './components/css/mirrorStyle.css';
-import BrowserDetection from 'react-browser-detection';
+//import BrowserDetection from 'react-browser-detection';
 
 import Artyom from 'artyom.js';
 
-// const electron = window.require('electron');
-// const ipcRenderer  = electron.ipcRenderer;
+const electron = window.require('electron');
+const ipcRenderer  = electron.ipcRenderer;
 
 // Create a "globally" accesible instance of Artyom
 const Jarvis = new Artyom();
@@ -51,7 +51,7 @@ class App extends Component {
          NewsTL:"top-left",
          NewsTC:"top-middle",
          none:"none",
-         artyomActive: false,
+         artyomActive: true,
          textareaValue: "",
          artyomIsReading: false
         }
@@ -104,23 +104,23 @@ class App extends Component {
   }
 
   componentDidMount(){
-    // ipcRenderer.send('mac:get','get')
-    // ipcRenderer.on('mac:send',(event,mac)=>{
-    //   axios.get('http://ec2-18-212-195-64.compute-1.amazonaws.com/api/configDisplay',{params:{DeviceID:mac}}).then(res=>{
-    //     console.log(res.data)
-    //     this.setState(res.data)
-    //     this.socket.emit('config:receive',{ config: {
-    //       DeviceID:res.data.DeviceID
-    //     }})
-    //   }).catch(err=>console.log(err))
-    // })
-    axios.get('http://ec2-18-212-195-64.compute-1.amazonaws.com/api/configDisplay',{params:{DeviceID:this.state.DeviceID}}).then(res=>{
-      console.log(res.data)
-      this.setState(res.data)
-      this.socket.emit('config:receive',{ config: {
-        DeviceID:res.data.DeviceID
-      }})
-    }).catch(err=>console.log(err))
+    ipcRenderer.send('mac:get','get')
+    ipcRenderer.on('mac:send',(event,mac)=>{
+      axios.get('http://ec2-18-212-195-64.compute-1.amazonaws.com/api/configDisplay',{params:{DeviceID:mac}}).then(res=>{
+        console.log(res.data)
+        this.setState(res.data)
+        this.socket.emit('config:receive',{ config: {
+          DeviceID:res.data.DeviceID
+        }})
+      }).catch(err=>console.log(err))
+    })
+    // axios.get('http://ec2-18-212-195-64.compute-1.amazonaws.com/api/configDisplay',{params:{DeviceID:this.state.DeviceID}}).then(res=>{
+    //   console.log(res.data)
+    //   this.setState(res.data)
+    //   this.socket.emit('config:receive',{ config: {
+    //     DeviceID:res.data.DeviceID
+    //   }})
+    // }).catch(err=>console.log(err))
 
       this.socket.on('config:send',(data)=>{
         console.log(data)
@@ -133,7 +133,7 @@ class App extends Component {
         console.log(this.state)
       })
 
-      this.startAssistant()
+      //this.startAssistant()
   }
 
   //////////////////////
