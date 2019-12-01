@@ -16,13 +16,99 @@ import BrowserDetection from 'react-browser-detection';
 
 import Artyom from 'artyom.js';
 
-// const electron = window.require('electron');
-// const ipcRenderer  = electron.ipcRenderer;
+const electron = window.require('electron');
+const ipcRenderer  = electron.ipcRenderer;
 
 // Create a "globally" accesible instance of Artyom
 const Jarvis = new Artyom();
-// console.log(window.chrome.webstore)
-// console.log(window.chrome.runtime)
+var speechSocket = SocketIOClient('http://localhost:1337/', { transports: ['websocket'] });
+//================= CONFIG =================
+// Stream Audio
+let bufferSize = 2048,
+	AudioContext,
+	context,
+	processor,
+	input,
+	globalStream;
+
+//vars
+let audioElement = document.querySelector('audio'),
+	finalWord = false,
+	resultText = document.getElementById('ResultText'),
+	removeLastSentence = true,
+  streamStreaming = false;
+
+  var downsampleBuffer = function (buffer, sampleRate, outSampleRate) {
+    if (outSampleRate == sampleRate) {
+      return buffer;
+    }
+    if (outSampleRate > sampleRate) {
+      throw "downsampling rate show be smaller than original sample rate";
+    }
+    var sampleRateRatio = sampleRate / outSampleRate;
+    var newLength = Math.round(buffer.length / sampleRateRatio);
+    var result = new Int16Array(newLength);
+    var offsetResult = 0;
+    var offsetBuffer = 0;
+    while (offsetResult < result.length) {
+      var nextOffsetBuffer = Math.round((offsetResult + 1) * sampleRateRatio);
+      var accum = 0, count = 0;
+      for (var i = offsetBuffer; i < nextOffsetBuffer && i < buffer.length; i++) {
+        accum += buffer[i];
+        count++;
+      }
+  
+      result[offsetResult] = Math.min(1, accum / count) * 0x7FFF;
+      offsetResult++;
+      offsetBuffer = nextOffsetBuffer;
+    }
+    return result.buffer;
+  }
+
+
+  ///////////////////
+  var initRecording =()=> {
+    speechSocket.emit('startGoogleCloudStream', ''); //init speechSocket Google Speech Connection
+    streamStreaming = true;
+    AudioContext = window.AudioContext || window.webkitAudioContext;
+    context = new AudioContext({
+      // if Non-interactive, use 'playback' or 'balanced' // https://developer.mozilla.org/en-US/docs/Web/API/AudioContextLatencyCategory
+      latencyHint: 'interactive',
+    });
+    processor = context.createScriptProcessor(bufferSize, 1, 1);
+    processor.connect(context.destination);
+    context.resume();
+  
+    var handleSuccess = function (stream) {
+      globalStream = stream;
+      input = context.createMediaStreamSource(stream);
+      input.connect(processor);
+  
+      processor.onaudioprocess = function (e) {
+        microphoneProcess(e);
+      };
+    };
+  
+    navigator.mediaDevices.getUserMedia(constraints)
+      .then(handleSuccess);
+  }
+
+  var microphoneProcess =(e)=> {
+    var left = e.inputBuffer.getChannelData(0);
+    // var left16 = convertFloat32ToInt16(left); // old 32 to 16 function
+    var left16 = downsampleBuffer(left, 44100, 16000)
+    speechSocket.emit('binaryData', left16);
+  }
+
+  /////////////////
+
+
+//audioStream constraints
+const constraints = {
+	audio: true,
+	video: false
+};
+
 class App extends Component {
   constructor(props, context){
     super(props, context);
@@ -51,7 +137,7 @@ class App extends Component {
          NewsTL:"top-left",
          NewsTC:"top-middle",
          none:"none",
-         artyomActive: false,
+         artyomActive: true,
          textareaValue: "",
          artyomIsReading: false
         }
@@ -104,23 +190,23 @@ class App extends Component {
   }
 
   componentDidMount(){
-    // ipcRenderer.send('mac:get','get')
-    // ipcRenderer.on('mac:send',(event,mac)=>{
-    //   axios.get('http://ec2-18-212-195-64.compute-1.amazonaws.com/api/configDisplay',{params:{DeviceID:mac}}).then(res=>{
-    //     console.log(res.data)
-    //     this.setState(res.data)
-    //     this.socket.emit('config:receive',{ config: {
-    //       DeviceID:res.data.DeviceID
-    //     }})
-    //   }).catch(err=>console.log(err))
-    // })
-    axios.get('http://ec2-18-212-195-64.compute-1.amazonaws.com/api/configDisplay',{params:{DeviceID:this.state.DeviceID}}).then(res=>{
-      console.log(res.data)
-      this.setState(res.data)
-      this.socket.emit('config:receive',{ config: {
-        DeviceID:res.data.DeviceID
-      }})
-    }).catch(err=>console.log(err))
+    ipcRenderer.send('mac:get','get')
+    ipcRenderer.on('mac:send',(event,mac)=>{
+      axios.get('http://ec2-18-212-195-64.compute-1.amazonaws.com/api/configDisplay',{params:{DeviceID:mac}}).then(res=>{
+        console.log(res.data)
+        this.setState(res.data)
+        this.socket.emit('config:receive',{ config: {
+          DeviceID:res.data.DeviceID
+        }})
+      }).catch(err=>console.log(err))
+    })
+    // axios.get('http://ec2-18-212-195-64.compute-1.amazonaws.com/api/configDisplay',{params:{DeviceID:this.state.DeviceID}}).then(res=>{
+    //   console.log(res.data)
+    //   this.setState(res.data)
+    //   this.socket.emit('config:receive',{ config: {
+    //     DeviceID:res.data.DeviceID
+    //   }})
+    // }).catch(err=>console.log(err))
 
       this.socket.on('config:send',(data)=>{
         console.log(data)
@@ -132,9 +218,17 @@ class App extends Component {
         this.setState(data.config)
         console.log(this.state)
       })
-
-      this.startAssistant()
+      speechSocket.emit('join', 'Server Connected to Client');
+      speechSocket.on('speechData', function (data) {
+        console.log(data)
+        Jarvis.simulateInstruction(data)
+      })
+      initRecording()
+      //this.startAssistant()
   }
+
+  //////////////////////////
+  
 
   //////////////////////
   startAssistant() {
