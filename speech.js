@@ -27,17 +27,16 @@ const io = require('socket.io')(server);
 
 // =========================== ROUTERS ================================ //
 
-// app.get('/', function (req, res) {
-//     res.render('index', {});
-// });
+app.get('/', function (req, res) {
+    res.send("hello world");
+});
 
-// app.use('/', function (req, res, next) {
-//     next(); // console.log(`Request Url: ${req.url}`);
-// });
+app.use('/', function (req, res, next) {
+    next(); // console.log(`Request Url: ${req.url}`);
+});
 
 
 // =========================== SOCKET.IO ================================ //
-
 io.on('connection', function (client) {
     console.log('Client Connected to server');
     let recognizeStream = null;
@@ -73,12 +72,12 @@ io.on('connection', function (client) {
                     (data.results[0] && data.results[0].alternatives[0])
                         ? `Transcription: ${data.results[0].alternatives[0].transcript}\n`
                         : `\n\nReached transcription time limit, press Ctrl+C\n`);
-                client.emit('speechData', data.results[0].alternatives[0].transcript);
 
                 // if end of utterance, let's restart stream
                 // this is a small hack. After 65 seconds of silence, the stream will still throw an error for speech length limit
                 if (data.results[0] && data.results[0].isFinal) {
                     stopRecognitionStream();
+                    client.emit('speechData', data.results[0].alternatives[0].transcript);
                     startRecognitionStream(client);
                     // console.log('restarted stream serverside');
                 }
@@ -87,7 +86,7 @@ io.on('connection', function (client) {
 
     function stopRecognitionStream() {
         if (recognizeStream) {
-            recognizeStream.end();
+            //recognizeStream.end();
         }
         recognizeStream = null;
     }
@@ -124,3 +123,5 @@ server.listen(port, "127.0.0.1", function () { //http listen, to make socket wor
     // app.address = "127.0.0.1";
     console.log('Server started on port:' + port)
 });
+
+

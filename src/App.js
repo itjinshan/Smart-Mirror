@@ -302,7 +302,7 @@ class App extends Component {
           },
       ]
       Jarvis.addCommands(myGroup);
-
+      initRecording()
         // let CommandsManager = new ArtyomCommandsManager(Jarvis);
         // CommandsManager.loadCommands();
   }
@@ -341,7 +341,7 @@ class App extends Component {
         console.log(data)
         Jarvis.simulateInstruction(data)
       })
-      initRecording()
+
       //this.startAssistant()
   }
 
