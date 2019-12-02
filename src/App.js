@@ -146,31 +146,149 @@ class App extends Component {
 
         var myGroup = [
           {
-              indexes: ["Hello", "Hi"],
-              action: () => {
-                  Jarvis.say("Hello, how are you?");
-              }
-          },
-          {
-              indexes: [/How are you/, /Regular expressions supported/],
+              indexes: ["Turn off * ","Turn off the * "],
               smart: true,
-              action: () => {
-                  Jarvis.say("I'm fine, thanks for asking !");
+              action: (i, config) => {
+                console.log(config)
+                  if(config == "weather"){
+                    this.setState({WeatherConfig:"OFF"})
+                  }else if(config == "map"){
+                    this.setState({MapConfig:"OFF"})
+                  }else if(config == "news"){
+                    this.setState({NewsConfig:"OFF"})
+                  }else if(config == "email"){
+                    this.setState({GmailConfig:"OFF"})
+                  }else if(config == "calendar"){
+                    this.setState({CalendarConfig:"OFF"})
+                  }else if(config == "Gmail"){
+                    this.setState({GmailConfig:"OFF"})
+                  }else if(config == "reminder"){
+                    this.setState({CalendarConfig:"OFF"})
+                  }
               }
           },
           {
-              indexes: ["Generate reports of * of this year"],
-              smart: true,
-              action: (i, month) => {
-                  let year = new Date().getFullYear();
-                  
-                  Jarvis.say(`Generating reports of ${month} ${year} `);
-
-                  Jarvis.say("Ready ! What were you expecting? write some code you lazy bear !");
-              }
+            indexes: ["Move * to top left ","put * to top left"],
+            smart: true,
+            action: (i, config) => {
+              console.log(config)
+                if(config == "weather"){
+                  this.setState({WeatherConfig:"top-left"})
+                }else if(config == "news"){
+                  this.setState({NewsConfig:"top-left"})
+                }else if(config == "email"){
+                  this.setState({GmailConfig:"top-left"})
+                }else if(config == "calendar"){
+                  this.setState({CalendarConfig:"top-left"})
+                }else if(config == "Gmail"){
+                  this.setState({GmailConfig:"top-left"})
+                }else if(config == "reminder"){
+                  this.setState({CalendarConfig:"top-left"})
+                }
+            }
           },
           {
-              indexes:["Turn it off"],
+            indexes: ["Move * to top right ","put * to top right"],
+            smart: true,
+            action: (i, config) => {
+              console.log(config)
+                if(config == "weather"){
+                  this.setState({WeatherConfig:"top-right"})
+                }else if(config == "news"){
+                  this.setState({NewsConfig:"top-right"})
+                }else if(config == "email"){
+                  this.setState({GmailConfig:"top-right"})
+                }else if(config == "calendar"){
+                  this.setState({CalendarConfig:"top-right"})
+                }else if(config == "Gmail"){
+                  this.setState({GmailConfig:"top-right"})
+                }else if(config == "reminder"){
+                  this.setState({CalendarConfig:"top-right"})
+                }
+            }
+          },
+          {
+            indexes: ["Move * to middle right","put * to middle right"],
+            smart: true,
+            action: (i, config) => {
+              console.log(config)
+                if(config == "map"){
+                  this.setState({MapConfig:"middle-right"})
+                }else if(config == "news"){
+                  this.setState({NewsConfig:"middle-right"})
+                }else if(config == "email"){
+                  this.setState({GmailConfig:"middle-right"})
+                }else if(config == "calendar"){
+                  this.setState({CalendarConfig:"middle-right"})
+                }else if(config == "Gmail"){
+                  this.setState({GmailConfig:"middle-right"})
+                }else if(config == "reminder"){
+                  this.setState({CalendarConfig:"middle-right"})
+                }
+            }
+        },
+        {
+          indexes: ["Move * to middle left","put * to middle left"],
+          smart: true,
+          action: (i, config) => {
+            console.log(config)
+              if(config == "map"){
+                this.setState({MapConfig:"middle-left"})
+              }else if(config == "news"){
+                this.setState({NewsConfig:"middle-left"})
+              }else if(config == "email"){
+                this.setState({GmailConfig:"middle-left"})
+              }else if(config == "calendar"){
+                this.setState({CalendarConfig:"middle-left"})
+              }else if(config == "Gmail"){
+                this.setState({GmailConfig:"middle-left"})
+              }else if(config == "reminder"){
+                this.setState({CalendarConfig:"middle-left"})
+              }
+          }
+      },
+      {
+        indexes: ["Move * to bottom left","put * to bottom left"],
+        smart: true,
+        action: (i, config) => {
+          console.log(config)
+            if(config == "map"){
+              this.setState({MapConfig:"bottom-left"})
+            }else if(config == "news"){
+              this.setState({NewsConfig:"bottom-left"})
+            }else if(config == "email"){
+              this.setState({GmailConfig:"bottom-left"})
+            }else if(config == "calendar"){
+              this.setState({CalendarConfig:"bottom-left"})
+            }else if(config == "Gmail"){
+              this.setState({GmailConfig:"bottom-left"})
+            }else if(config == "reminder"){
+              this.setState({CalendarConfig:"bottom-left"})
+            }
+        }
+    },
+    {
+      indexes: ["Move * to bottom right","put * to bottom right"],
+      smart: true,
+      action: (i, config) => {
+        console.log(config)
+          if(config == "map"){
+            this.setState({MapConfig:"bottom-right"})
+          }else if(config == "news"){
+            this.setState({NewsConfig:"bottom-right"})
+          }else if(config == "email"){
+            this.setState({GmailConfig:"bottom-right"})
+          }else if(config == "calendar"){
+            this.setState({CalendarConfig:"bottom-right"})
+          }else if(config == "Gmail"){
+            this.setState({GmailConfig:"bottom-right"})
+          }else if(config == "reminder"){
+            this.setState({CalendarConfig:"bottom-right"})
+          }
+      }
+  },
+          {
+              indexes:["Turn it off", "Turn off"],
               action:()=>{
                   Jarvis.dontObey()
                   this.setState({artyomActive: false})
