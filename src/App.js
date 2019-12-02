@@ -288,7 +288,7 @@ class App extends Component {
       }
   },
           {
-              indexes:["Turn it off", "Turn off"],
+              indexes:["Turn it off"],
               action:()=>{
                   Jarvis.dontObey()
                   this.setState({artyomActive: false})
